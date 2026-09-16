@@ -1,0 +1,15 @@
+# Bỏ qua file rác của Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+
+# Bỏ qua file rác của Backend 
+backend/target/
+backend/build/
+backend/.mvn/
+backend/.gradle/
+
+# Bỏ qua file rác của IDE 
+.vscode/
+.idea/
+*.iml
