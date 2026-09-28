@@ -36,7 +36,7 @@ export default function SinhVienPage() {
 
   return (
     <div style={{ display: 'flex', gap: '20px', fontFamily: 'Arial, sans-serif', backgroundColor: '#eef2f6', padding: '20px', minHeight: '100vh', flexWrap: 'wrap' }}>
-{/* Cột trái */}
+{/*Cột trái*/}
       <div style={{ width: '300px', display: 'flex', flexDirection: 'column', gap: '20px', flexShrink: 0 }}>
         
         {/* Box Thông tin cá nhân */}
