@@ -1,23 +1,24 @@
-import { useState, useEffect } from 'react'
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import SinhVienPage from './pages/SinhVienPage'
+import AdminPage from './pages/AdminPage'
 
 function App() {
-  const [duLieu, setDuLieu] = useState('Đang chờ kết nối từ Spring Boot...')
-
-  useEffect(() => {
-    // Gọi API sang cổng 8080 của Backend
-    fetch('http://localhost:8080/api/kiem-tra')
-      .then(response => response.text())
-      .then(data => setDuLieu(data))
-      .catch(error => setDuLieu("Lỗi: Không thể kết nối Backend"));
-  }, []);
-
   return (
-    <div style={{ padding: '40px', fontFamily: 'Arial' }}>
-      <h2>Kiểm tra kết nối Monolith (ReactJS + Spring Boot)</h2>
-      <div style={{ padding: '20px', backgroundColor: '#e8f4f8', borderRadius: '8px' }}>
-        <p>Phản hồi từ hệ thống: <strong>{duLieu}</strong></p>
+    <BrowserRouter>
+      {/* Thanh Menu điều hướng */}
+      <nav style={{ padding: '15px 30px', background: '#2c3e50', marginBottom: '20px' }}>
+        <Link to="/" style={{ color: 'white', marginRight: '30px', textDecoration: 'none', fontSize: '18px', fontWeight: 'bold' }}>Trang Sinh Viên</Link>
+        <Link to="/admin" style={{ color: 'white', textDecoration: 'none', fontSize: '18px', fontWeight: 'bold' }}>Trang Admin</Link>
+      </nav>
+
+      {/* Khu vực nội dung thay đổi theo link */}
+      <div style={{ padding: '0 30px' }}>
+        <Routes>
+          <Route path="/" element={<SinhVienPage />} />
+          <Route path="/admin" element={<AdminPage />} />
+        </Routes>
       </div>
-    </div>
+    </BrowserRouter>
   )
 }
 
