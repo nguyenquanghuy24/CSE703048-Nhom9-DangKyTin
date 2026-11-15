@@ -29,7 +29,7 @@ export default function LoginPage() {
     window.setTimeout(() => {
       const account = ROLES.find((item) => item.id === role && [item.username, item.email].some((value) => value.toLowerCase() === username.trim().toLowerCase()))
       if (account && password === account.password) {
-        localStorage.setItem('portal-session', JSON.stringify({ role: account.id, username: username.trim(), loggedInAt: Date.now() }))
+        localStorage.setItem('portal-session', JSON.stringify({ role: account.id, username: username.trim(), email: account.email, loggedInAt: Date.now() }))
         navigate(account.home)
       } else {
         setError('Tên đăng nhập hoặc mật khẩu không đúng với vai trò đã chọn.')

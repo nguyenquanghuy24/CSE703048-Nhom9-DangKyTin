@@ -13,6 +13,7 @@ const currency = (value) => new Intl.NumberFormat('vi-VN', { style: 'currency', 
 
 export default function QuanLyTaiChinhPage() {
   const navigate = useNavigate()
+  const session = (() => { try { return JSON.parse(localStorage.getItem('portal-session') || 'null') } catch { return null } })()
   const [debts, setDebts] = useState(initialDebts)
   const [query, setQuery] = useState('')
   const [status, setStatus] = useState('Tất cả trạng thái')
@@ -23,7 +24,7 @@ export default function QuanLyTaiChinhPage() {
   const setPaid = (id, value) => setDebts((current) => current.map((item) => item.id !== id ? item : { ...item, paid: value, status: value >= item.due ? 'Đã hoàn thành' : value > 0 ? 'Còn công nợ' : 'Chưa thanh toán' }))
   const logout = () => { localStorage.removeItem('portal-session'); navigate('/login', { replace: true }) }
   return <div className="finance-page">
-    <aside className="finance-sidebar"><a className="finance-brand" href="/tai-chinh"><span>PK</span><div><b>PHENIKAA</b><small>Finance workspace</small></div></a><div className="finance-nav-label">QUẢN LÝ TÀI CHÍNH</div><a className="finance-nav active" href="/tai-chinh">Công nợ học phí</a><div className="finance-sidebar-bottom"><div className="finance-user"><span>TC</span><div><b>Quản lý Tài chính</b><small>taichinh@edu.vn</small></div></div><button onClick={logout}>Đăng xuất <span>↗</span></button></div></aside>
+    <aside className="finance-sidebar"><a className="finance-brand" href="/tai-chinh"><span>PK</span><div><b>PHENIKAA</b><small>Finance workspace</small></div></a><div className="finance-nav-label">QUẢN LÝ TÀI CHÍNH</div><a className="finance-nav active" href="/tai-chinh">Công nợ học phí</a><div className="finance-sidebar-bottom"><div className="finance-user"><span>{(session?.username || 'TC').slice(0, 2).toUpperCase()}</span><div><b>Quản lý Tài chính</b><small>{session?.email || session?.username || 'taichinh'}</small></div></div><button onClick={logout}>Đăng xuất <span>↗</span></button></div></aside>
     <main className="finance-main"><header className="finance-topbar"><span>Không gian làm việc <b>/ Tài chính</b></span><span className="finance-period">Năm học 2025–2026 <i>⌄</i></span></header>
       <section className="finance-heading"><div><span className="finance-kicker">THEO DÕI HỌC PHÍ</span><h1>Công nợ sinh viên</h1><p>Tra cứu nghĩa vụ học phí và cập nhật số tiền đã nộp theo học kỳ.</p></div><button className="finance-export" onClick={() => window.print()}>↓ <span>Xuất báo cáo</span></button></section>
       <section className="finance-summary"><article className="finance-summary-primary"><span>Tổng phải thu</span><b>{currency(totalDue)}</b><small>Học kỳ II · Năm học 2025–2026</small><i>↗</i></article><article><span>Đã thu</span><b>{currency(totalPaid)}</b><small>{totalDue ? Math.round(totalPaid / totalDue * 100) : 0}% tổng học phí</small><progress className="finance-progress" value={totalDue ? totalPaid / totalDue * 100 : 0} max="100" aria-label="Tỷ lệ học phí đã thu" /></article><article><span>Còn phải thu</span><b>{currency(outstanding)}</b><small>{debts.filter((item) => item.paid < item.due).length} sinh viên còn công nợ</small></article><article><span>Hoàn thành</span><b>{debts.filter((item) => item.paid >= item.due).length}<small> / {debts.length}</small></b><small>Đã hoàn tất nghĩa vụ</small></article></section>
