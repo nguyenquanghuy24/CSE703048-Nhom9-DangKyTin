@@ -1,4 +1,5 @@
 import { NavLink, useNavigate } from 'react-router-dom'
+import './StudentLayout.css'
 
 const menu = [
   { key: 'dang-ky', label: 'Đăng ký học phần', to: '/sinh-vien/dang-ky' },
