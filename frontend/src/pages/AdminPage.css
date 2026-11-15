@@ -6,3 +6,8 @@
 @media(max-width:620px){.admin-sidebar{display:flex;flex-direction:row;flex-wrap:wrap;align-items:center;gap:3px}.admin-brand{width:100%;padding:0 3px 10px}.admin-menu-caption{display:block;width:100%;padding:4px 3px}.admin-nav{display:inline-block;width:auto;margin:2px;padding:8px;border:1px solid #ddd}.admin-nav.active{border-color:#171717}.admin-sidebar-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;margin-top:5px}.admin-profile{padding:5px 3px;border:0}.admin-logout{width:auto;margin-left:auto}}
 
 @media(max-width:620px){.admin-sidebar{display:flex;flex-direction:row;flex-wrap:wrap;align-items:center;gap:3px}.admin-brand{width:100%;padding:0 3px 10px}.admin-menu-caption{display:block;width:100%;padding:4px 3px}.admin-nav{display:block;width:auto;margin:2px;padding:8px;border:1px solid #ddd;border-left:2px solid transparent}.admin-nav.active{border-left-color:#171717}.admin-sidebar-bottom{display:flex;align-items:center;gap:8px;width:100%;margin-top:5px;padding-top:7px}.admin-profile{padding:4px;border:0}.admin-sidebar-bottom>.admin-logout{width:auto;margin-left:auto}}
+
+/* Pin the admin menu and its account actions while the table scrolls. */
+.admin-sidebar{position:fixed;inset:0 auto 0 0;height:100vh;overflow-y:auto;z-index:20}.admin-main{margin-left:232px}
+@media(max-width:900px) and (min-width:621px){.admin-main{margin-left:195px}}
+@media(max-width:620px){.admin-sidebar{position:sticky;inset:auto;height:auto;overflow:visible;z-index:20}.admin-main{margin-left:0}}

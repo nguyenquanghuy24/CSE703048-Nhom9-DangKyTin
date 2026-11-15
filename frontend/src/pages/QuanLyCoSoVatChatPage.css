@@ -68,3 +68,8 @@
 
 
 @media(max-width:620px){.facility-sidebar{display:flex;flex-direction:row;flex-wrap:wrap;align-items:center;gap:3px}.facility-brand{width:100%;padding:0 3px 10px}.facility-nav-label{display:block;width:100%;padding:4px 3px}.facility-nav{display:inline-block;padding:8px;border:1px solid #ddd}.facility-sidebar-bottom{display:flex;align-items:center;gap:8px;width:100%;margin-top:5px;padding-top:7px}.facility-user{padding:4px;border:0}.facility-sidebar-bottom>button{width:auto;margin-left:auto}}
+
+/* Fixed navigation keeps logout reachable while the workspace scrolls. */
+.facility-sidebar{position:fixed;inset:0 auto 0 0;height:100vh;overflow-y:auto;z-index:20}.facility-main{margin-left:220px}
+@media(max-width:900px) and (min-width:621px){.facility-main{margin-left:195px}}
+@media(max-width:620px){.facility-sidebar{position:sticky;inset:auto;height:auto;overflow:visible;z-index:20}.facility-main{margin-left:0}}
