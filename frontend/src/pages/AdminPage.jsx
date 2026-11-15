@@ -1,377 +1,702 @@
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-import React, { useState, useEffect } from 'react';
+// ─── Mock Data ────────────────────────────────────────────────────────────────
+const mockSinhVien = [
+  { id: 1, ma: 'SV001', hoTen: 'Nguyễn Văn An', email: 'an.nv@edu.vn', khoa: '2022', lop: 'CNTT01', nganh: 'Công nghệ thông tin', khoa_: 'Khoa CNTT', trangThai: 'active' },
+  { id: 2, ma: 'SV002', hoTen: 'Trần Thị Bình', email: 'binh.tt@edu.vn', khoa: '2022', lop: 'CNTT01', nganh: 'Công nghệ thông tin', khoa_: 'Khoa CNTT', trangThai: 'active' },
+  { id: 3, ma: 'SV003', hoTen: 'Lê Minh Cường', email: 'cuong.lm@edu.vn', khoa: '2021', lop: 'KTPM02', nganh: 'Kỹ thuật phần mềm', khoa_: 'Khoa CNTT', trangThai: 'inactive' },
+  { id: 4, ma: 'SV004', hoTen: 'Phạm Thị Dung', email: 'dung.pt@edu.vn', khoa: '2023', lop: 'HTTT01', nganh: 'Hệ thống thông tin', khoa_: 'Khoa CNTT', trangThai: 'active' },
+  { id: 5, ma: 'SV005', hoTen: 'Hoàng Văn Em', email: 'em.hv@edu.vn', khoa: '2023', lop: 'CNTT02', nganh: 'Công nghệ thông tin', khoa_: 'Khoa CNTT', trangThai: 'active' },
+  { id: 6, ma: 'SV006', hoTen: 'Vũ Thị Fương', email: 'fuong.vt@edu.vn', khoa: '2021', lop: 'KTPM01', nganh: 'Kỹ thuật phần mềm', khoa_: 'Khoa CNTT', trangThai: 'inactive' },
+  { id: 7, ma: 'SV007', hoTen: 'Đặng Quốc Gia', email: 'gia.dq@edu.vn', khoa: '2022', lop: 'CNTT03', nganh: 'Công nghệ thông tin', khoa_: 'Khoa CNTT', trangThai: 'active' },
+]
 
-/* ===== Dữ liệu dùng chung (cùng mã học phần / mã lớp / học phí với trang Sinh viên) ===== */
-const HOC_PHI = '1,577,250 đ';
-const KY_HIEN_TAI = 'HK3 2024-2025';
-const GIANG_VIEN = ['Trịnh Thanh Bình', 'Vũ Quang Dũng'];
-const THU = ['Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7'];
-const CA = ['Ca 1', 'Ca 2', 'Ca 3', 'Ca 4'];
-const TRANG_THAI = ['Chưa mở', 'Mở', 'Đóng', 'Hủy'];
-const MAU_TT = { 'Chưa mở': '#7f8c8d', 'Mở': '#3b8b40', 'Đóng': '#f39c12', 'Hủy': '#e74c3c' };
+const mockQuanLyKhoa = [
+  { id: 1, ma: 'NV001', hoTen: 'PGS.TS. Nguyễn Mạnh Hùng', email: 'hung.nm@edu.vn', khoaNganh: 'Khoa CNTT', chucVu: 'Trưởng khoa', trangThai: 'active' },
+  { id: 2, ma: 'NV002', hoTen: 'TS. Trần Thị Lan', email: 'lan.tt@edu.vn', khoaNganh: 'Khoa CNTT', chucVu: 'Phó trưởng khoa', trangThai: 'active' },
+  { id: 3, ma: 'NV003', hoTen: 'ThS. Lê Văn Minh', email: 'minh.lv@edu.vn', khoaNganh: 'Ngành KTPM', chucVu: 'Trưởng ngành', trangThai: 'active' },
+  { id: 4, ma: 'NV004', hoTen: 'TS. Phạm Quốc Nam', email: 'nam.pq@edu.vn', khoaNganh: 'Ngành HTTT', chucVu: 'Trưởng ngành', trangThai: 'inactive' },
+  { id: 5, ma: 'NV005', hoTen: 'ThS. Hoàng Thị Oanh', email: 'oanh.ht@edu.vn', khoaNganh: 'Khoa Kinh tế', chucVu: 'Trưởng khoa', trangThai: 'active' },
+  { id: 6, ma: 'NV006', hoTen: 'GS.TS. Vũ Đình Phúc', email: 'phuc.vd@edu.vn', khoaNganh: 'Khoa Cơ bản', chucVu: 'Trưởng khoa', trangThai: 'active' },
+]
 
-const HOC_PHAN = [
-  { maHocPhan: 'CSE703006', tenHocPhan: 'Cấu trúc dữ liệu và thuật toán(Học đi)', tinChi: 3 },
-  { maHocPhan: 'CSE702025', tenHocPhan: 'Kỹ thuật phần mềm(Học đi)', tinChi: 3 },
-  { maHocPhan: 'CSE702017', tenHocPhan: 'Hệ điều hành(Học đi)', tinChi: 3 },
-  { maHocPhan: 'CSE703023', tenHocPhan: 'Kiến trúc máy tính(Học đi)', tinChi: 3 },
-];
+const mockPhongDaoTao = [
+  { id: 1, ma: 'NV101', hoTen: 'ThS. Bùi Thị Quỳnh', email: 'quynh.bt@edu.vn', boPhan: 'Phòng Đào tạo', chucVu: 'Trưởng phòng', trangThai: 'active' },
+  { id: 2, ma: 'NV102', hoTen: 'CN. Đỗ Văn Rồng', email: 'rong.dv@edu.vn', boPhan: 'Phòng Đào tạo', chucVu: 'Chuyên viên', trangThai: 'active' },
+  { id: 3, ma: 'NV103', hoTen: 'CN. Ngô Thị Sương', email: 'suong.nt@edu.vn', boPhan: 'Phòng Đào tạo', chucVu: 'Chuyên viên', trangThai: 'active' },
+  { id: 4, ma: 'NV104', hoTen: 'CN. Đinh Minh Tuấn', email: 'tuan.dm@edu.vn', boPhan: 'Phòng Đào tạo', chucVu: 'Chuyên viên', trangThai: 'inactive' },
+  { id: 5, ma: 'NV105', hoTen: 'ThS. Lương Thị Uyên', email: 'uyen.lt@edu.vn', boPhan: 'Phòng Đào tạo', chucVu: 'Phó trưởng phòng', trangThai: 'active' },
+]
 
-const mkLop = (maLop, hp, gv, phong, thu, ca, siSo, daDk, tt) => ({
-  maLop, maHocPhan: hp.maHocPhan, tenHocPhan: hp.tenHocPhan, tinChi: hp.tinChi,
-  giangVien: gv, phong, thu, ca, siSoToiDa: siSo, daDangKy: daDk, trangThai: tt, hocPhi: HOC_PHI, hocKy: KY_HIEN_TAI,
-});
-const LOP_BAN_DAU = [
-  mkLop('Cấu trúc dữ liệu và thuật toán-1-3-24(COUR01)', HOC_PHAN[0], GIANG_VIEN[0], 'A2-301', 'Thứ 2', 'Ca 1', 100, 90, 'Mở'),
-  mkLop('Cấu trúc dữ liệu và thuật toán-2-3-24(COUR02)', HOC_PHAN[0], GIANG_VIEN[1], 'A2-302', 'Thứ 4', 'Ca 2', 100, 100, 'Mở'),
-  mkLop('Kỹ thuật phần mềm-1-3-24(COUR01)', HOC_PHAN[1], GIANG_VIEN[0], 'A3-105', 'Thứ 3', 'Ca 1', 500, 0, 'Mở'),
-  mkLop('Hệ điều hành-1-3-24(COUR01)', HOC_PHAN[2], GIANG_VIEN[1], 'B1-204', 'Thứ 5', 'Ca 3', 60, 15, 'Mở'),
-];
+// ─── Color palette ─────────────────────────────────────────────────────────────
+const C = {
+  primary: '#171717',
+  primaryLight: '#3b3b3b',
+  primaryDark: '#000000',
+  accent: '#171717',
+  success: '#2E7D32',
+  error: '#C62828',
+  warning: '#F57F17',
+  bg: '#F5F5F3',
+  card: '#FFFFFF',
+  textPrimary: '#212121',
+  textSecondary: '#616161',
+  border: '#E0E0E0',
+}
 
-const now = Date.now();
-const toLocal = (t) => { const d = new Date(t - new Date(t).getTimezoneOffset() * 60000); return d.toISOString().slice(0, 16); };
-const fmt = (s) => new Date(s).toLocaleString('vi-VN', { hour12: false });
-const DOT_BAN_DAU = [
-  { ma: 'DKH_2024_2025_3.1', ten: 'Đăng ký học HK3 (Đợt học 1_K17)', hocKy: KY_HIEN_TAI, batDau: toLocal(now - 864e5), ketThuc: toLocal(now + 6 * 864e5), trangThai: 'Đang mở' },
-  { ma: 'DKH_2024_2025_2.1', ten: 'Đăng ký học HK2 (Đợt học 1_K17)', hocKy: 'HK2 2024-2025', batDau: '2025-01-05T08:00', ketThuc: '2025-01-15T17:00', trangThai: 'Đã đóng' },
-];
-
-/* ===== Style dùng chung (giữ nguyên bảng màu của trang Sinh viên) ===== */
-const card = { backgroundColor: 'white', padding: '20px', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' };
-const btn = (bg, extra = {}) => ({ padding: '6px 15px', backgroundColor: bg, color: bg === '#ecf0f1' ? '#333' : 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '13px', ...extra });
-const input = { width: '100%', padding: '8px 10px', borderRadius: '4px', border: '1px solid #ccc', fontSize: '13px', boxSizing: 'border-box' };
-const row = { display: 'flex', justifyContent: 'space-between' };
-
-function Modal({ title, onClose, children }) {
+// ─── Shared micro-components ───────────────────────────────────────────────────
+function Badge({ active }) {
   return (
-    <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10, padding: '20px' }}>
-      <div style={{ ...card, width: '100%', maxWidth: '520px', maxHeight: '90vh', overflowY: 'auto' }}>
-        <div style={{ ...row, borderBottom: '1px solid #eee', paddingBottom: '10px', marginBottom: '15px' }}>
-          <h4 style={{ margin: 0, color: '#2c3e50' }}>{title}</h4>
-          <span onClick={onClose} style={{ cursor: 'pointer', color: '#7f8c8d' }}>✕</span>
+    <span style={{
+      display: 'inline-flex',
+      alignItems: 'center',
+      gap: '4px',
+      padding: '4px 10px',
+      borderRadius: '20px',
+      fontSize: '12px',
+      fontWeight: 600,
+      background: active ? '#E8F5E9' : '#FFEBEE',
+      color: active ? C.success : C.error,
+      border: `1px solid ${active ? '#A5D6A7' : '#EF9A9A'}`,
+    }}>
+      <span style={{ fontSize: '8px' }}>{active ? '●' : '●'}</span>
+      {active ? 'Hoạt động' : 'Ngừng hoạt động'}
+    </span>
+  )
+}
+
+function ActionBtn({ icon, label, color, onClick }) {
+  const [hov, setHov] = useState(false)
+  return (
+    <button
+      title={label}
+      onClick={onClick}
+      onMouseEnter={() => setHov(true)}
+      onMouseLeave={() => setHov(false)}
+      style={{
+        background: hov ? color : `${color}18`,
+        color: hov ? '#fff' : color,
+        border: `1px solid ${color}40`,
+        borderRadius: '6px',
+        padding: '5px 9px',
+        fontSize: '14px',
+        cursor: 'pointer',
+        transition: 'all 0.15s',
+        marginRight: '4px',
+      }}
+    >
+      {icon}
+    </button>
+  )
+}
+
+function Modal({ open, onClose, title, children }) {
+  if (!open) return null
+  return (
+    <div style={{
+      position: 'fixed', inset: 0,
+      background: 'rgba(0,0,0,0.45)',
+      zIndex: 1000,
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      padding: '16px',
+    }} onClick={(e) => { if (e.target === e.currentTarget) onClose() }}>
+      <div style={{
+        background: C.card,
+        borderRadius: '12px',
+        boxShadow: '0 8px 40px rgba(0,0,0,0.2)',
+        width: '100%',
+        maxWidth: '560px',
+        maxHeight: '90vh',
+        overflowY: 'auto',
+      }}>
+        <div style={{
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+          padding: '20px 24px',
+          borderBottom: `1px solid ${C.border}`,
+        }}>
+          <h3 style={{ fontSize: '18px', fontWeight: 700, color: C.primary }}>{title}</h3>
+          <button onClick={onClose} style={{ background: 'none', border: 'none', fontSize: '20px', cursor: 'pointer', color: C.textSecondary, lineHeight: 1 }}>✕</button>
         </div>
-        {children}
+        <div style={{ padding: '24px' }}>{children}</div>
       </div>
     </div>
-  );
+  )
 }
-const Field = ({ label, children }) => (
-  <label style={{ display: 'block', fontSize: '13px', marginBottom: '12px', color: '#34495e' }}>
-    <span style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>{label}</span>{children}
-  </label>
-);
 
+function ConfirmDialog({ open, onClose, onConfirm, message }) {
+  if (!open) return null
+  return (
+    <div style={{
+      position: 'fixed', inset: 0,
+      background: 'rgba(0,0,0,0.45)',
+      zIndex: 1100,
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      padding: '16px',
+    }}>
+      <div style={{
+        background: C.card,
+        borderRadius: '12px',
+        boxShadow: '0 8px 40px rgba(0,0,0,0.2)',
+        width: '100%',
+        maxWidth: '400px',
+        padding: '28px 24px',
+      }}>
+        <div style={{ fontSize: '40px', textAlign: 'center', marginBottom: '16px' }}>🗑️</div>
+        <h3 style={{ fontSize: '18px', fontWeight: 700, color: C.textPrimary, textAlign: 'center', marginBottom: '12px' }}>Xác nhận xóa</h3>
+        <p style={{ color: C.textSecondary, textAlign: 'center', marginBottom: '24px', fontSize: '14px' }}>{message}</p>
+        <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
+          <button onClick={onClose} style={{ padding: '10px 24px', borderRadius: '8px', border: `1px solid ${C.border}`, background: '#FFF', color: C.textPrimary, fontWeight: 600, cursor: 'pointer', fontSize: '14px' }}>Hủy</button>
+          <button onClick={onConfirm} style={{ padding: '10px 24px', borderRadius: '8px', border: 'none', background: C.error, color: '#FFF', fontWeight: 700, cursor: 'pointer', fontSize: '14px' }}>Xóa</button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function FormField({ label, id, required, children }) {
+  return (
+    <div style={{ marginBottom: '16px' }}>
+      <label htmlFor={id} style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: '#424242', marginBottom: '6px' }}>
+        {label} {required && <span style={{ color: C.error }}>*</span>}
+      </label>
+      {children}
+    </div>
+  )
+}
+
+const inputStyle = {
+  width: '100%',
+  padding: '10px 12px',
+  border: `1.5px solid ${C.border}`,
+  borderRadius: '8px',
+  fontSize: '14px',
+  color: C.textPrimary,
+  background: '#FFF',
+}
+
+// ─── Main Component ────────────────────────────────────────────────────────────
 export default function AdminPage() {
-  const [lop, setLop] = useState(LOP_BAN_DAU);
-  const [dot, setDot] = useState(DOT_BAN_DAU);
-  const [logs, setLogs] = useState([{ time: new Date().toISOString(), viec: 'Đăng nhập hệ thống (Phòng Đào tạo)' }]);
-  const [tab, setTab] = useState('lop');
-  const [hpChon, setHpChon] = useState(null);
-  const [tuKhoa, setTuKhoa] = useState('');
-  const [locGv, setLocGv] = useState([]);
-  const [locThu, setLocThu] = useState([]);
-  const [modal, setModal] = useState(null); // {loai, data}
-  const [form, setForm] = useState({});
-  const [loi, setLoi] = useState('');
-  const [thongBao, setThongBao] = useState('');
+  const navigate = useNavigate()
+  const [selectedRole, setSelectedRole] = useState('sinh-vien')
+  const [search, setSearch] = useState('')
+  const [showAddModal, setShowAddModal] = useState(false)
+  const [showViewModal, setShowViewModal] = useState(false)
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false)
+  const [selectedUser, setSelectedUser] = useState(null)
+  const [toast, setToast] = useState(null)
 
-  const ghiLog = (viec) => setLogs((l) => [{ time: new Date().toISOString(), viec }, ...l]);
-  const bao = (m) => { setThongBao(m); setTimeout(() => setThongBao(''), 2500); };
-  const dongModal = () => { setModal(null); setLoi(''); };
-  const toggle = (arr, set, v) => set(arr.includes(v) ? arr.filter((x) => x !== v) : [...arr, v]);
+  // Data state
+  const [svData, setSvData] = useState(mockSinhVien)
+  const [qlData, setQlData] = useState(mockQuanLyKhoa)
+  const [pdtData, setPdtData] = useState(mockPhongDaoTao)
 
-  // R1.2.2 Tự động chuyển đợt đăng ký sang "Đã đóng" khi hết thời gian
-  useEffect(() => {
-    const tick = () => setDot((ds) => ds.map((d) => (d.trangThai === 'Đang mở' && new Date(d.ketThuc) <= new Date() ? { ...d, trangThai: 'Đã đóng' } : d)));
-    tick();
-    const id = setInterval(tick, 30000);
-    return () => clearInterval(id);
-  }, []);
+  // Add form state
+  const [addForm, setAddForm] = useState({})
 
-  const dotDangMo = dot.find((d) => d.trangThai === 'Đang mở');
-  const dem = (t) => lop.filter((l) => l.trangThai === t).length;
+  const showToast = (msg, type = 'success') => {
+    setToast({ msg, type })
+    setTimeout(() => setToast(null), 3000)
+  }
 
-  const lopHienThi = lop.filter((l) =>
-    (!hpChon || l.maHocPhan === hpChon) &&
-    (locGv.length === 0 || locGv.includes(l.giangVien)) &&
-    (locThu.length === 0 || locThu.includes(l.thu))
-  );
-  const hpHienThi = HOC_PHAN.filter((h) => (h.maHocPhan + h.tenHocPhan).toLowerCase().includes(tuKhoa.toLowerCase()));
+  const currentData = selectedRole === 'sinh-vien' ? svData : selectedRole === 'quan-ly-khoa' ? qlData : pdtData
 
-  /* ---- UC 1.1 Tạo mới / R1.1.3 Chỉnh sửa ---- */
-  const moForm = (loai, l) => {
-    setForm(l ? { ...l } : { maLop: '', maHocPhan: '', tenHocPhan: '', tinChi: '', giangVien: '', phong: '', thu: '', ca: '', siSoToiDa: '' });
-    setLoi(''); setModal({ loai });
-  };
-  const luu = () => {
-    const f = form;
-    const thieu = ['maLop', 'tenHocPhan', 'tinChi', 'giangVien', 'phong', 'thu', 'ca', 'siSoToiDa'].some((k) => String(f[k] ?? '').trim() === '');
-    const si = Number(f.siSoToiDa), tc = Number(f.tinChi);
-    if (thieu || !Number.isInteger(si) || si <= 0 || !Number.isInteger(tc) || tc <= 0)
-      return setLoi('Vui lòng điền đầy đủ, đúng định dạng các trường (số tín chỉ và sĩ số phải là số nguyên dương).'); // 1.0.E2
-    if (modal.loai === 'them') {
-      if (lop.some((l) => l.maLop === f.maLop.trim() && l.hocKy === KY_HIEN_TAI)) return setLoi('Mã lớp học phần đã tồn tại'); // 1.0.E1
-      const hp = HOC_PHAN.find((h) => h.tenHocPhan === f.tenHocPhan);
-      setLop([...lop, { ...f, maLop: f.maLop.trim(), maHocPhan: hp ? hp.maHocPhan : f.maHocPhan || '—', tinChi: tc, siSoToiDa: si, daDangKy: 0, trangThai: 'Chưa mở', hocPhi: HOC_PHI, hocKy: KY_HIEN_TAI }]);
-      ghiLog(`Thêm lớp học phần ${f.maLop}`); bao('Thêm lớp học phần thành công');
-    } else {
-      if (si < f.daDangKy) return setLoi(`Sĩ số tối đa không được nhỏ hơn số sinh viên đã đăng ký (${f.daDangKy}).`);
-      setLop(lop.map((l) => (l.maLop === f.maLop ? { ...l, giangVien: f.giangVien, phong: f.phong, thu: f.thu, ca: f.ca, siSoToiDa: si } : l)));
-      ghiLog(`Sửa lớp học phần ${f.maLop}`); bao('Cập nhật lớp học phần thành công');
-    }
-    dongModal();
-  };
+  const filteredData = currentData.filter(u =>
+    u.hoTen.toLowerCase().includes(search.toLowerCase()) ||
+    u.email.toLowerCase().includes(search.toLowerCase()) ||
+    u.ma.toLowerCase().includes(search.toLowerCase())
+  )
 
-  /* ---- R1.1.4 Xóa / R1.3.1 Trạng thái ---- */
-  const xoa = () => {
-    setLop(lop.filter((l) => l.maLop !== modal.data.maLop));
-    ghiLog(`Xóa lớp học phần ${modal.data.maLop}`); bao('Đã xóa lớp học phần'); dongModal();
-  };
-  const doiTrangThai = (l, tt) => {
-    if (tt === 'Mở' && !dotDangMo) return bao('Chưa có đợt đăng ký đang mở để mở lớp này');
-    setLop(lop.map((x) => (x.maLop === l.maLop ? { ...x, trangThai: tt } : x)));
-    ghiLog(`Đổi trạng thái lớp ${l.maLop}: ${l.trangThai} → ${tt}`);
-  };
+  const handleDelete = () => {
+    if (!selectedUser) return
+    if (selectedRole === 'sinh-vien') setSvData(d => d.filter(u => u.id !== selectedUser.id))
+    else if (selectedRole === 'quan-ly-khoa') setQlData(d => d.filter(u => u.id !== selectedUser.id))
+    else setPdtData(d => d.filter(u => u.id !== selectedUser.id))
+    setShowDeleteDialog(false)
+    setSelectedUser(null)
+    showToast('Đã xóa tài khoản thành công!', 'success')
+  }
 
-  /* ---- R1.2 Đợt đăng ký ---- */
-  const taoDot = () => {
-    if (!form.ten || !form.hocKy || !form.batDau || !form.ketThuc) return setLoi('Vui lòng điền đầy đủ thông tin đợt đăng ký.');
-    if (new Date(form.ketThuc) <= new Date(form.batDau)) return setLoi('Thời gian kết thúc phải sau thời gian bắt đầu.');
-    const ma = `DKH_${form.hocKy.replace(/\s+/g, '_')}_${dot.length + 1}`;
-    setDot([{ ma, ten: form.ten, hocKy: form.hocKy, batDau: form.batDau, ketThuc: form.ketThuc, trangThai: 'Đang mở' }, ...dot.map((d) => (d.trangThai === 'Đang mở' ? { ...d, trangThai: 'Đã đóng' } : d))]);
-    ghiLog(`Tạo đợt đăng ký ${ma}`); bao('Tạo đợt đăng ký thành công'); dongModal();
-  };
-  const dongDot = (d) => { setDot(dot.map((x) => (x.ma === d.ma ? { ...x, trangThai: 'Đã đóng' } : x))); ghiLog(`Đóng đợt đăng ký ${d.ma}`); };
+  const handleAdd = () => {
+    const newId = Math.max(...currentData.map(u => u.id), 0) + 1
+    const newUser = { id: newId, trangThai: 'active', ...addForm }
+    if (selectedRole === 'sinh-vien') setSvData(d => [...d, { ma: `SV${String(newId).padStart(3,'0')}`, khoa: '2024', lop: '', nganh: '', khoa_: 'Khoa CNTT', ...newUser }])
+    else if (selectedRole === 'quan-ly-khoa') setQlData(d => [...d, { ma: `NV${String(newId).padStart(3,'0')}`, khoaNganh: '', chucVu: '', ...newUser }])
+    else setPdtData(d => [...d, { ma: `NV${String(newId+100).padStart(3,'0')}`, boPhan: 'Phòng Đào tạo', chucVu: '', ...newUser }])
+    setShowAddModal(false)
+    setAddForm({})
+    showToast('Thêm tài khoản thành công!', 'success')
+  }
 
-  const Badge = ({ tt }) => <span style={{ backgroundColor: MAU_TT[tt] || '#7f8c8d', color: 'white', padding: '3px 10px', borderRadius: '4px', fontSize: '12px' }}>{tt}</span>;
+  const sideItems = [
+    { icon: '👥', label: 'Quản lý tài khoản', active: true },
+    { icon: '▦', label: 'Quản lý đào tạo', path: '/admin/dao-tao?module=hoc-phan', active: true },
+    { icon: '▣', label: 'Quản lý phòng học', path: '/admin/dao-tao?module=phong-hoc', active: true },
+    { icon: '◫', label: 'Lớp học phần', path: '/admin/dao-tao?module=lop-hoc-phan', active: true },
+    { icon: '◷', label: 'Đợt đăng ký', path: '/admin/dao-tao?module=dot-dang-ky', active: true },
+    { icon: '₫', label: 'Tài chính sinh viên', path: '/admin/dao-tao?module=tai-chinh', active: true },
+    { icon: '☷', label: 'Nhật ký hoạt động', path: '/admin/dao-tao?module=nhat-ky', active: true },
+    { icon: '⚙️', label: 'Cài đặt hệ thống', active: false },
+    { icon: '📊', label: 'Báo cáo thống kê', active: false },
+    { icon: '🔔', label: 'Thông báo hệ thống', active: false },
+    { icon: '📋', label: 'Nhật ký hoạt động', active: false },
+  ]
 
   return (
-    <div style={{ display: 'flex', gap: '20px', fontFamily: 'Arial, sans-serif', backgroundColor: '#eef2f6', padding: '20px', minHeight: '100vh', flexWrap: 'wrap' }}>
-      {thongBao && <div style={{ position: 'fixed', top: 20, right: 20, background: '#3b8b40', color: 'white', padding: '10px 20px', borderRadius: '4px', zIndex: 20, fontSize: '14px' }}>{thongBao}</div>}
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', background: C.bg, fontFamily: "'Segoe UI', system-ui, sans-serif" }}>
 
-      {/* Cột trái */}
-      <div style={{ width: '300px', display: 'flex', flexDirection: 'column', gap: '20px', flexShrink: 0 }}>
-        <div style={card}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '15px', borderBottom: '1px solid #eee', paddingBottom: '15px', marginBottom: '15px' }}>
-            <div style={{ width: '60px', height: '60px', backgroundColor: '#ccc', borderRadius: '50%' }}></div>
-            <div>
-              <h3 style={{ margin: 0, fontSize: '16px', color: '#2c3e50' }}>Phòng Đào tạo</h3>
-              <p style={{ margin: '5px 0 0 0', fontSize: '14px', color: '#7f8c8d' }}>Quản trị viên</p>
-            </div>
-          </div>
-          <div style={{ fontSize: '14px', color: '#34495e', lineHeight: '2' }}>
-            <div style={row}><span>Tổng lớp học phần:</span> <strong>{lop.length}</strong></div>
-            <div style={row}><span>Đang mở đăng ký:</span> <strong>{dem('Mở')}</strong></div>
-            <div style={row}><span>Chưa mở:</span> <strong>{dem('Chưa mở')}</strong></div>
-            <div style={row}><span>Đã đóng / hủy:</span> <strong>{dem('Đóng') + dem('Hủy')}</strong></div>
-          </div>
+      {/* Toast */}
+      {toast && (
+        <div style={{
+          position: 'fixed', top: '20px', right: '20px', zIndex: 9999,
+          background: toast.type === 'success' ? '#E8F5E9' : '#FFEBEE',
+          border: `1px solid ${toast.type === 'success' ? '#A5D6A7' : '#EF9A9A'}`,
+          color: toast.type === 'success' ? C.success : C.error,
+          padding: '12px 20px', borderRadius: '8px',
+          boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+          fontWeight: 600, fontSize: '14px',
+          display: 'flex', alignItems: 'center', gap: '8px',
+        }}>
+          {toast.type === 'success' ? '✅' : '❌'} {toast.msg}
         </div>
+      )}
 
-        <div style={card}>
-          <h4 style={{ margin: '0 0 15px 0', color: '#2c3e50', borderBottom: '1px solid #eee', paddingBottom: '10px' }}>Bộ lọc tìm kiếm</h4>
-          <div style={{ marginBottom: '15px' }}>
-            <strong style={{ fontSize: '14px', display: 'block', marginBottom: '10px' }}>Giảng viên</strong>
-            {GIANG_VIEN.map((g) => (
-              <label key={g} style={{ display: 'block', fontSize: '13px', marginBottom: '5px' }}>
-                <input type="checkbox" checked={locGv.includes(g)} onChange={() => toggle(locGv, setLocGv, g)} /> {g}
-              </label>
-            ))}
-          </div>
-          <div style={{ marginBottom: '15px' }}>
-            <strong style={{ fontSize: '14px', display: 'block', marginBottom: '10px' }}>Thứ học</strong>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5px', fontSize: '13px' }}>
-              {THU.map((t) => (
-                <label key={t}><input type="checkbox" checked={locThu.includes(t)} onChange={() => toggle(locThu, setLocThu, t)} /> {t.replace('Thứ ', '')}</label>
-              ))}
+      {/* Navbar */}
+      <header style={{
+        background: C.primary,
+        color: '#FFF',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: '0 24px',
+        height: '60px',
+        boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+        flexShrink: 0,
+        zIndex: 100,
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <span style={{ fontSize: '24px' }}>🎓</span>
+          <span style={{ fontWeight: 700, fontSize: '16px', letterSpacing: '0.3px' }}>HỆ THỐNG ĐĂNG KÝ TÍN CHỈ</span>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{
+              width: '36px', height: '36px', borderRadius: '50%',
+              background: 'rgba(255,255,255,0.2)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontSize: '16px', fontWeight: 700,
+            }}>A</div>
+            <div>
+              <div style={{ fontSize: '14px', fontWeight: 600 }}>Admin</div>
+              <div style={{ fontSize: '11px', opacity: 0.75 }}>Quản trị viên</div>
             </div>
           </div>
-          <button onClick={() => { setLocGv([]); setLocThu([]); setHpChon(null); setTuKhoa(''); }} style={{ width: '100%', padding: '10px', backgroundColor: '#3498db', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
-            Xóa bộ lọc
+          <button
+            onClick={() => navigate('/login')}
+            style={{
+              background: 'rgba(255,255,255,0.15)',
+              color: '#FFF',
+              border: '1px solid rgba(255,255,255,0.3)',
+              borderRadius: '8px',
+              padding: '8px 16px',
+              fontWeight: 600,
+              fontSize: '13px',
+              cursor: 'pointer',
+              transition: 'background 0.2s',
+            }}
+            onMouseEnter={e => { e.target.style.background = 'rgba(255,255,255,0.25)' }}
+            onMouseLeave={e => { e.target.style.background = 'rgba(255,255,255,0.15)' }}
+          >
+            🚪 Đăng xuất
           </button>
         </div>
+      </header>
+
+      <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
+        {/* Sidebar */}
+        <aside style={{
+          width: '240px',
+          background: C.card,
+          borderRight: `1px solid ${C.border}`,
+          display: 'flex',
+          flexDirection: 'column',
+          flexShrink: 0,
+          overflowY: 'auto',
+        }}>
+          <div style={{ padding: '20px 16px 8px', fontSize: '11px', fontWeight: 700, color: C.textSecondary, letterSpacing: '0.8px', textTransform: 'uppercase' }}>
+            Chức năng
+          </div>
+          {sideItems.map((item, i) => (
+            <div key={i} style={{
+              display: 'flex', alignItems: 'center', gap: '10px',
+              padding: '11px 16px',
+              borderRadius: '8px',
+              margin: '2px 8px',
+              cursor: item.active ? 'pointer' : 'default',
+              background: item.active ? '#E3F2FD' : 'transparent',
+              color: item.active ? C.primary : item.active === false ? '#BDBDBD' : C.textSecondary,
+              fontWeight: item.active ? 700 : 500,
+              fontSize: '14px',
+              transition: 'background 0.15s',
+              opacity: !item.active && i > 0 ? 0.5 : 1,
+            }} onClick={() => item.path && navigate(item.path)}>
+              <span style={{ fontSize: '18px' }}>{item.icon}</span>
+              {item.label}
+            </div>
+          ))}
+
+          <div style={{ flex: 1 }} />
+          <div style={{ padding: '16px', borderTop: `1px solid ${C.border}`, fontSize: '12px', color: C.textSecondary }}>
+            <div style={{ fontWeight: 600, marginBottom: '4px' }}>Phiên bản 2.1.0</div>
+            <div>© 2025 Trường ĐH XYZ</div>
+          </div>
+        </aside>
+
+        {/* Main content */}
+        <main style={{ flex: 1, overflowY: 'auto', padding: '24px' }}>
+          {/* Page header */}
+          <div style={{ marginBottom: '24px' }}>
+            <h1 style={{ fontSize: '22px', fontWeight: 800, color: C.textPrimary, marginBottom: '4px' }}>
+              👥 Quản lý tài khoản người dùng
+            </h1>
+            <p style={{ color: C.textSecondary, fontSize: '14px' }}>
+              Quản lý và phân quyền tài khoản trong hệ thống đăng ký tín chỉ
+            </p>
+          </div>
+
+          {/* Controls card */}
+          <div style={{ background: C.card, borderRadius: '12px', border: `1px solid ${C.border}`, padding: '20px', marginBottom: '20px', boxShadow: '0 1px 4px rgba(0,0,0,0.05)' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', alignItems: 'center' }}>
+              {/* Role selector */}
+              <div style={{ display: 'flex', background: C.bg, borderRadius: '8px', border: `1px solid ${C.border}`, overflow: 'hidden' }}>
+                {[
+                  { value: 'sinh-vien', label: '🎓 Sinh viên' },
+                  { value: 'quan-ly-khoa', label: '🏫 Quản lý Khoa/Ngành' },
+                  { value: 'phong-dao-tao', label: '📋 Phòng Đào tạo' },
+                ].map(opt => (
+                  <button key={opt.value}
+                    onClick={() => { setSelectedRole(opt.value); setSearch('') }}
+                    style={{
+                      padding: '8px 16px', border: 'none', cursor: 'pointer',
+                      fontWeight: selectedRole === opt.value ? 700 : 500,
+                      fontSize: '13px',
+                      background: selectedRole === opt.value ? C.primary : 'transparent',
+                      color: selectedRole === opt.value ? '#FFF' : C.textSecondary,
+                      transition: 'all 0.15s',
+                    }}
+                  >
+                    {opt.label}
+                  </button>
+                ))}
+              </div>
+
+              {/* Search */}
+              <div style={{ flex: 1, minWidth: '220px', position: 'relative' }}>
+                <span style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', fontSize: '16px' }}>🔍</span>
+                <input
+                  type="text"
+                  placeholder="Tìm theo tên, mã, email..."
+                  value={search}
+                  onChange={e => setSearch(e.target.value)}
+                  style={{ ...inputStyle, paddingLeft: '34px', fontSize: '13px' }}
+                />
+              </div>
+
+              {/* Action buttons */}
+              <div style={{ display: 'flex', gap: '8px', marginLeft: 'auto' }}>
+                <button
+                  onClick={() => { setAddForm({}); setShowAddModal(true) }}
+                  style={{
+                    padding: '9px 18px', background: C.accent, color: '#FFF',
+                    border: 'none', borderRadius: '8px', fontWeight: 700, fontSize: '13px', cursor: 'pointer',
+                    display: 'flex', alignItems: 'center', gap: '6px',
+                    boxShadow: '0 2px 8px rgba(230,81,0,0.3)',
+                    transition: 'background 0.2s',
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.background = '#BF360C' }}
+                  onMouseLeave={e => { e.currentTarget.style.background = C.accent }}
+                >
+                  ➕ Thêm tài khoản
+                </button>
+                <button
+                  style={{
+                    padding: '9px 18px', background: '#FFF', color: C.primary,
+                    border: `1.5px solid ${C.primary}`, borderRadius: '8px', fontWeight: 700, fontSize: '13px', cursor: 'pointer',
+                    display: 'flex', alignItems: 'center', gap: '6px',
+                    transition: 'background 0.2s',
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.background = '#E3F2FD' }}
+                  onMouseLeave={e => { e.currentTarget.style.background = '#FFF' }}
+                >
+                  📥 Nhập từ Excel
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Stats row */}
+          <div style={{ display: 'flex', gap: '16px', marginBottom: '20px', flexWrap: 'wrap' }}>
+            {[
+              { label: 'Tổng tài khoản', value: currentData.length, icon: '👥', color: C.primary },
+              { label: 'Đang hoạt động', value: currentData.filter(u => u.trangThai === 'active').length, icon: '✅', color: C.success },
+              { label: 'Ngừng hoạt động', value: currentData.filter(u => u.trangThai !== 'active').length, icon: '🚫', color: C.error },
+              { label: 'Kết quả tìm kiếm', value: filteredData.length, icon: '🔍', color: '#F57F17' },
+            ].map((stat, i) => (
+              <div key={i} style={{
+                background: C.card, borderRadius: '10px', border: `1px solid ${C.border}`,
+                padding: '16px 20px', flex: '1', minWidth: '140px',
+                boxShadow: '0 1px 4px rgba(0,0,0,0.05)',
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <div>
+                    <div style={{ fontSize: '13px', color: C.textSecondary, marginBottom: '4px' }}>{stat.label}</div>
+                    <div style={{ fontSize: '26px', fontWeight: 800, color: stat.color }}>{stat.value}</div>
+                  </div>
+                  <span style={{ fontSize: '32px' }}>{stat.icon}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Table */}
+          <div style={{ background: C.card, borderRadius: '12px', border: `1px solid ${C.border}`, boxShadow: '0 1px 4px rgba(0,0,0,0.05)', overflow: 'hidden' }}>
+            <div style={{ padding: '16px 20px', borderBottom: `1px solid ${C.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <span style={{ fontWeight: 700, fontSize: '15px', color: C.textPrimary }}>
+                Danh sách tài khoản ({filteredData.length})
+              </span>
+            </div>
+
+            <div style={{ overflowX: 'auto' }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '13px' }}>
+                <thead>
+                  <tr style={{ background: '#F8F9FB', borderBottom: `2px solid ${C.border}` }}>
+                    {selectedRole === 'sinh-vien' && (
+                      <>
+                        <Th>STT</Th><Th>Mã SV</Th><Th>Họ và Tên</Th><Th>Email</Th>
+                        <Th>Khóa</Th><Th>Lớp</Th><Th>Ngành</Th><Th>Khoa</Th>
+                        <Th>Trạng thái</Th><Th>Thao tác</Th>
+                      </>
+                    )}
+                    {selectedRole === 'quan-ly-khoa' && (
+                      <>
+                        <Th>STT</Th><Th>Mã NV</Th><Th>Họ và Tên</Th><Th>Email</Th>
+                        <Th>Khoa/Ngành</Th><Th>Chức vụ</Th>
+                        <Th>Trạng thái</Th><Th>Thao tác</Th>
+                      </>
+                    )}
+                    {selectedRole === 'phong-dao-tao' && (
+                      <>
+                        <Th>STT</Th><Th>Mã NV</Th><Th>Họ và Tên</Th><Th>Email</Th>
+                        <Th>Bộ phận</Th><Th>Chức vụ</Th>
+                        <Th>Trạng thái</Th><Th>Thao tác</Th>
+                      </>
+                    )}
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredData.length === 0 ? (
+                    <tr>
+                      <td colSpan={10} style={{ textAlign: 'center', padding: '40px', color: C.textSecondary }}>
+                        <div style={{ fontSize: '40px', marginBottom: '8px' }}>🔍</div>
+                        <div>Không tìm thấy tài khoản phù hợp</div>
+                      </td>
+                    </tr>
+                  ) : filteredData.map((user, idx) => (
+                    <TableRow key={user.id} even={idx % 2 === 0}>
+                      <Td>{idx + 1}</Td>
+                      <Td><span style={{ fontWeight: 600, color: C.primary }}>{user.ma}</span></Td>
+                      <Td>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                          <div style={{
+                            width: '32px', height: '32px', borderRadius: '50%',
+                            background: `linear-gradient(135deg, ${C.primary}, ${C.primaryLight})`,
+                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                            color: '#FFF', fontSize: '12px', fontWeight: 700, flexShrink: 0,
+                          }}>
+                            {user.hoTen.split(' ').pop()[0]}
+                          </div>
+                          <span style={{ fontWeight: 600, color: C.textPrimary }}>{user.hoTen}</span>
+                        </div>
+                      </Td>
+                      <Td style={{ color: C.textSecondary }}>{user.email}</Td>
+                      {selectedRole === 'sinh-vien' && (
+                        <>
+                          <Td>{user.khoa}</Td>
+                          <Td>{user.lop}</Td>
+                          <Td>{user.nganh}</Td>
+                          <Td>{user.khoa_}</Td>
+                        </>
+                      )}
+                      {selectedRole === 'quan-ly-khoa' && (
+                        <>
+                          <Td>{user.khoaNganh}</Td>
+                          <Td>{user.chucVu}</Td>
+                        </>
+                      )}
+                      {selectedRole === 'phong-dao-tao' && (
+                        <>
+                          <Td>{user.boPhan}</Td>
+                          <Td>{user.chucVu}</Td>
+                        </>
+                      )}
+                      <Td><Badge active={user.trangThai === 'active'} /></Td>
+                      <Td>
+                        <ActionBtn icon="👁️" label="Xem chi tiết" color={C.primary} onClick={() => { setSelectedUser(user); setShowViewModal(true) }} />
+                        <ActionBtn icon="✏️" label="Chỉnh sửa" color={C.warning} onClick={() => showToast('Chức năng chỉnh sửa đang phát triển', 'info')} />
+                        <ActionBtn icon="🗑️" label="Xóa" color={C.error} onClick={() => { setSelectedUser(user); setShowDeleteDialog(true) }} />
+                      </Td>
+                    </TableRow>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </main>
       </div>
 
-      {/* Cột phải */}
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '20px', minWidth: 0 }}>
-        <div style={card}>
-          <div style={{ display: 'flex', gap: '20px', marginBottom: '10px' }}>
-            <div style={{ width: '150px', fontWeight: 'bold', fontSize: '14px' }}>Chương trình đào tạo</div>
-            <div style={{ backgroundColor: '#2980b9', color: 'white', padding: '5px 15px', borderRadius: '4px', fontSize: '13px' }}>Đại học Chính quy Khóa 17_4 năm - Công nghệ thông tin</div>
-          </div>
-          <div style={{ display: 'flex', gap: '20px' }}>
-            <div style={{ width: '150px', fontWeight: 'bold', fontSize: '14px' }}>Kế hoạch</div>
-            <div style={{ backgroundColor: dotDangMo ? '#f39c12' : '#7f8c8d', color: 'white', padding: '5px 15px', borderRadius: '4px', fontSize: '13px' }}>
-              {dotDangMo ? `${dotDangMo.ma} - ${dotDangMo.ten}` : 'Hiện không có đợt đăng ký nào đang mở'}
-            </div>
+      {/* Add Account Modal */}
+      <Modal open={showAddModal} onClose={() => setShowAddModal(false)} title={`➕ Thêm tài khoản — ${selectedRole === 'sinh-vien' ? 'Sinh viên' : selectedRole === 'quan-ly-khoa' ? 'Quản lý Khoa/Ngành' : 'Phòng Đào tạo'}`}>
+        <div>
+          <FormField label="Họ và tên" id="ht" required>
+            <input id="ht" style={inputStyle} placeholder="Nhập họ và tên..." value={addForm.hoTen || ''} onChange={e => setAddForm(f => ({ ...f, hoTen: e.target.value }))} />
+          </FormField>
+          <FormField label="Email" id="em" required>
+            <input id="em" type="email" style={inputStyle} placeholder="Nhập email..." value={addForm.email || ''} onChange={e => setAddForm(f => ({ ...f, email: e.target.value }))} />
+          </FormField>
+          <FormField label="Mật khẩu" id="pw" required>
+            <input id="pw" type="password" style={inputStyle} placeholder="Nhập mật khẩu..." value={addForm.password || ''} onChange={e => setAddForm(f => ({ ...f, password: e.target.value }))} />
+          </FormField>
+
+          {selectedRole === 'sinh-vien' && (
+            <>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                <FormField label="Lớp" id="lop">
+                  <input id="lop" style={inputStyle} placeholder="VD: CNTT01" value={addForm.lop || ''} onChange={e => setAddForm(f => ({ ...f, lop: e.target.value }))} />
+                </FormField>
+                <FormField label="Khóa" id="kh">
+                  <input id="kh" style={inputStyle} placeholder="VD: 2024" value={addForm.khoa || ''} onChange={e => setAddForm(f => ({ ...f, khoa: e.target.value }))} />
+                </FormField>
+              </div>
+              <FormField label="Ngành" id="ng">
+                <input id="ng" style={inputStyle} placeholder="Nhập ngành học..." value={addForm.nganh || ''} onChange={e => setAddForm(f => ({ ...f, nganh: e.target.value }))} />
+              </FormField>
+            </>
+          )}
+
+          {selectedRole === 'quan-ly-khoa' && (
+            <>
+              <FormField label="Khoa/Ngành phụ trách" id="kn">
+                <input id="kn" style={inputStyle} placeholder="VD: Khoa CNTT" value={addForm.khoaNganh || ''} onChange={e => setAddForm(f => ({ ...f, khoaNganh: e.target.value }))} />
+              </FormField>
+              <FormField label="Chức vụ" id="cv">
+                <select id="cv" style={inputStyle} value={addForm.chucVu || ''} onChange={e => setAddForm(f => ({ ...f, chucVu: e.target.value }))}>
+                  <option value="">-- Chọn chức vụ --</option>
+                  <option>Trưởng khoa</option>
+                  <option>Phó trưởng khoa</option>
+                  <option>Trưởng ngành</option>
+                </select>
+              </FormField>
+            </>
+          )}
+
+          {selectedRole === 'phong-dao-tao' && (
+            <FormField label="Chức vụ" id="cv2">
+              <select id="cv2" style={inputStyle} value={addForm.chucVu || ''} onChange={e => setAddForm(f => ({ ...f, chucVu: e.target.value }))}>
+                <option value="">-- Chọn chức vụ --</option>
+                <option>Trưởng phòng</option>
+                <option>Phó trưởng phòng</option>
+                <option>Chuyên viên</option>
+              </select>
+            </FormField>
+          )}
+
+          <div style={{ display: 'flex', gap: '12px', justifyContent: 'flex-end', marginTop: '8px' }}>
+            <button onClick={() => setShowAddModal(false)} style={{ padding: '10px 24px', borderRadius: '8px', border: `1px solid ${C.border}`, background: '#FFF', fontWeight: 600, cursor: 'pointer', fontSize: '14px' }}>Hủy</button>
+            <button onClick={handleAdd} style={{ padding: '10px 24px', borderRadius: '8px', border: 'none', background: C.primary, color: '#FFF', fontWeight: 700, cursor: 'pointer', fontSize: '14px' }}>✅ Lưu tài khoản</button>
           </div>
         </div>
+      </Modal>
 
-        {/* Tabs */}
-        <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-          {[['lop', 'Quản lý lớp học phần'], ['dot', 'Đợt đăng ký tín chỉ'], ['log', 'Nhật ký hệ thống']].map(([k, t]) => (
-            <div key={k} onClick={() => setTab(k)} style={{ padding: '12px 20px', borderRadius: '4px', cursor: 'pointer', fontSize: '13px', backgroundColor: tab === k ? '#3b8b40' : 'white', color: tab === k ? 'white' : '#333', border: tab === k ? '1px solid #3b8b40' : '1px solid #eee' }}>{t}</div>
-          ))}
-        </div>
-
-        {tab === 'lop' && (
-          <>
-            <div style={card}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '20px', marginBottom: '20px', borderBottom: '1px solid #eee', paddingBottom: '15px', flexWrap: 'wrap' }}>
-                <strong style={{ fontSize: '16px' }}>Học phần</strong>
-                <input type="text" value={tuKhoa} onChange={(e) => setTuKhoa(e.target.value)} placeholder="Tìm kiếm học phần" style={{ flex: 1, minWidth: '150px', padding: '8px 15px', borderRadius: '20px', border: '1px solid #ccc', outline: 'none' }} />
-                <button onClick={() => moForm('them')} style={btn('#f39c12', { padding: '8px 18px' })}>+ Thêm mới lớp học phần</button>
+      {/* View Detail Modal */}
+      <Modal open={showViewModal} onClose={() => setShowViewModal(false)} title="👁️ Chi tiết tài khoản">
+        {selectedUser && (
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '20px', padding: '16px', background: C.bg, borderRadius: '10px' }}>
+              <div style={{
+                width: '60px', height: '60px', borderRadius: '50%',
+                background: `linear-gradient(135deg, ${C.primary}, ${C.primaryLight})`,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                color: '#FFF', fontSize: '24px', fontWeight: 700, flexShrink: 0,
+              }}>
+                {selectedUser.hoTen?.split(' ').pop()[0]}
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '10px' }}>
-                {hpHienThi.map((hp) => (
-                  <div key={hp.maHocPhan} onClick={() => setHpChon(hp.maHocPhan === hpChon ? null : hp.maHocPhan)}
-                    style={{ padding: '12px 15px', borderRadius: '4px', cursor: 'pointer', fontSize: '13px', transition: '0.2s', backgroundColor: hp.maHocPhan === hpChon ? '#3b8b40' : 'transparent', color: hp.maHocPhan === hpChon ? 'white' : '#333', border: hp.maHocPhan === hpChon ? '1px solid #3b8b40' : '1px solid #eee' }}>
-                    &gt; {hp.maHocPhan} - {hp.tenHocPhan}
-                  </div>
-                ))}
+              <div>
+                <div style={{ fontWeight: 700, fontSize: '18px', color: C.textPrimary }}>{selectedUser.hoTen}</div>
+                <div style={{ color: C.textSecondary, fontSize: '13px' }}>{selectedUser.email}</div>
+                <Badge active={selectedUser.trangThai === 'active'} />
               </div>
             </div>
-
-            <div style={{ display: 'flex', gap: '20px' }}>
-              <div style={{ width: '80px', flexShrink: 0, backgroundColor: '#d5def5', padding: '15px', borderRadius: '8px 0 0 8px', fontWeight: 'bold', color: '#2c3e50', textAlign: 'center', alignSelf: 'stretch' }}>Lớp học phần</div>
-              <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: '10px', paddingTop: '10px' }}>
-                {lopHienThi.length === 0 && <div style={{ padding: '20px', color: '#7f8c8d', fontStyle: 'italic' }}>Chưa có lớp học phần nào phù hợp.</div>}
-                {lopHienThi.map((l) => (
-                  <div key={l.maLop} style={{ backgroundColor: 'white', padding: '15px', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
-                    <div style={{ ...row, alignItems: 'center', marginBottom: '15px', gap: '10px' }}>
-                      <div style={{ fontWeight: 'bold', fontSize: '15px', color: '#2c3e50' }}>{l.maLop}</div>
-                      <Badge tt={l.trangThai} />
-                    </div>
-                    <div style={{ ...row, flexWrap: 'wrap', gap: '10px', fontSize: '13px', color: '#555', marginBottom: '15px' }}>
-                      <div>Giảng viên: <strong>{l.giangVien}</strong></div>
-                      <div>Phòng: <strong>{l.phong}</strong></div>
-                      <div>Lịch: <strong>{l.thu} - {l.ca}</strong></div>
-                      <div>Tổng số: <strong>{l.siSoToiDa}</strong></div>
-                      <div>Đã đăng ký: <strong>{l.daDangKy}</strong></div>
-                    </div>
-                    <div style={{ ...row, alignItems: 'center', borderTop: '1px solid #eee', paddingTop: '15px', flexWrap: 'wrap', gap: '10px' }}>
-                      <div style={{ color: '#e74c3c', fontWeight: 'bold' }}>{l.hocPhi}</div>
-                      <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                        <select value={l.trangThai} onChange={(e) => doiTrangThai(l, e.target.value)} style={{ padding: '6px', borderRadius: '4px', border: '1px solid #ccc', fontSize: '13px' }}>
-                          {TRANG_THAI.map((t) => <option key={t}>{t}</option>)}
-                        </select>
-                        <button onClick={() => setModal({ loai: 'chitiet', data: l })} style={btn('#ecf0f1')}>Xem chi tiết</button>
-                        <button onClick={() => moForm('sua', l)} style={btn('#3498db')}>Chỉnh sửa</button>
-                        <button onClick={() => (l.daDangKy > 0 ? bao('Không thể xóa: lớp đã có sinh viên đăng ký') : setModal({ loai: 'xoa', data: l }))}
-                          style={btn(l.daDangKy > 0 ? '#bdc3c7' : '#e74c3c', { cursor: l.daDangKy > 0 ? 'not-allowed' : 'pointer' })}>Xóa</button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </>
-        )}
-
-        {tab === 'dot' && (
-          <div style={card}>
-            <div style={{ ...row, alignItems: 'center', borderBottom: '1px solid #eee', paddingBottom: '15px', marginBottom: '15px' }}>
-              <strong style={{ fontSize: '16px' }}>Đợt đăng ký tín chỉ</strong>
-              <button onClick={() => { setForm({ ten: '', hocKy: '', batDau: '', ketThuc: '' }); setLoi(''); setModal({ loai: 'dot' }); }} style={btn('#f39c12', { padding: '8px 18px' })}>+ Tạo đợt đăng ký</button>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              {dot.map((d) => (
-                <div key={d.ma} style={{ border: '1px solid #eee', borderRadius: '4px', padding: '12px 15px', fontSize: '13px' }}>
-                  <div style={{ ...row, alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
-                    <strong style={{ color: '#2c3e50' }}>{d.ma} - {d.ten}</strong>
-                    <span style={{ backgroundColor: d.trangThai === 'Đang mở' ? '#3b8b40' : '#7f8c8d', color: 'white', padding: '3px 10px', borderRadius: '4px', fontSize: '12px' }}>{d.trangThai}</span>
-                  </div>
-                  <div style={{ ...row, marginTop: '10px', color: '#555', flexWrap: 'wrap', gap: '10px', alignItems: 'center' }}>
-                    <span>Học kỳ: <strong>{d.hocKy}</strong></span>
-                    <span>Bắt đầu: <strong>{fmt(d.batDau)}</strong></span>
-                    <span>Kết thúc: <strong>{fmt(d.ketThuc)}</strong></span>
-                    {d.trangThai === 'Đang mở' && <button onClick={() => dongDot(d)} style={btn('#e74c3c')}>Đóng đợt</button>}
-                  </div>
+            {Object.entries(selectedUser)
+              .filter(([k]) => !['id', 'trangThai'].includes(k))
+              .map(([k, v]) => (
+                <div key={k} style={{ display: 'flex', padding: '10px 0', borderBottom: `1px solid ${C.border}`, fontSize: '14px' }}>
+                  <span style={{ width: '160px', flexShrink: 0, color: C.textSecondary, fontWeight: 500 }}>{fieldLabel(k)}</span>
+                  <span style={{ fontWeight: 600, color: C.textPrimary }}>{v}</span>
                 </div>
               ))}
-            </div>
           </div>
         )}
+      </Modal>
 
-        {tab === 'log' && (
-          <div style={card}>
-            <strong style={{ fontSize: '16px', display: 'block', borderBottom: '1px solid #eee', paddingBottom: '15px', marginBottom: '15px' }}>Nhật ký hệ thống</strong>
-            {logs.map((g, i) => (
-              <div key={i} style={{ ...row, fontSize: '13px', padding: '8px 0', borderBottom: '1px solid #f3f3f3', gap: '15px' }}>
-                <span style={{ color: '#34495e' }}>{g.viec}</span>
-                <span style={{ color: '#7f8c8d', whiteSpace: 'nowrap' }}>{fmt(g.time)}</span>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-
-      {/* Modal thêm/sửa lớp */}
-      {(modal?.loai === 'them' || modal?.loai === 'sua') && (() => {
-        const sua = modal.loai === 'sua';
-        const set = (k) => (e) => setForm({ ...form, [k]: e.target.value });
-        return (
-          <Modal title={sua ? 'Chỉnh sửa lớp học phần' : 'Thêm mới lớp học phần'} onClose={dongModal}>
-            <Field label="Mã lớp học phần"><input style={input} value={form.maLop} onChange={set('maLop')} disabled={sua} /></Field>
-            <Field label="Tên học phần">
-              <input style={input} list="ds-hp" value={form.tenHocPhan} onChange={(e) => { const h = HOC_PHAN.find((x) => x.tenHocPhan === e.target.value); setForm({ ...form, tenHocPhan: e.target.value, ...(h ? { tinChi: h.tinChi } : {}) }); }} disabled={sua} />
-              <datalist id="ds-hp">{HOC_PHAN.map((h) => <option key={h.maHocPhan} value={h.tenHocPhan} />)}</datalist>
-            </Field>
-            <Field label="Số tín chỉ"><input style={input} type="number" value={form.tinChi} onChange={set('tinChi')} disabled={sua} /></Field>
-            <Field label="Giảng viên">
-              <select style={input} value={form.giangVien} onChange={set('giangVien')}><option value="">-- Chọn giảng viên --</option>{GIANG_VIEN.map((g) => <option key={g}>{g}</option>)}</select>
-            </Field>
-            <Field label="Phòng học"><input style={input} value={form.phong} onChange={set('phong')} /></Field>
-            <div style={{ display: 'flex', gap: '10px' }}>
-              <div style={{ flex: 1 }}><Field label="Thứ"><select style={input} value={form.thu} onChange={set('thu')}><option value="">--</option>{THU.map((t) => <option key={t}>{t}</option>)}</select></Field></div>
-              <div style={{ flex: 1 }}><Field label="Ca học"><select style={input} value={form.ca} onChange={set('ca')}><option value="">--</option>{CA.map((c) => <option key={c}>{c}</option>)}</select></Field></div>
-            </div>
-            <Field label="Sĩ số tối đa"><input style={input} type="number" value={form.siSoToiDa} onChange={set('siSoToiDa')} /></Field>
-            {!sua && <p style={{ fontSize: '12px', color: '#7f8c8d', margin: '0 0 10px' }}>Lớp mới tạo có trạng thái "Chưa mở" và sinh viên chưa nhìn thấy cho đến khi chuyển sang "Mở".</p>}
-            {loi && <div style={{ color: '#e74c3c', fontSize: '13px', marginBottom: '10px' }}>{loi}</div>}
-            <div style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end' }}>
-              <button onClick={dongModal} style={btn('#ecf0f1')}>Hủy</button>
-              <button onClick={luu} style={btn('#f39c12')}>Lưu</button>
-            </div>
-          </Modal>
-        );
-      })()}
-
-      {/* Modal tạo đợt */}
-      {modal?.loai === 'dot' && (
-        <Modal title="Tạo đợt đăng ký tín chỉ" onClose={dongModal}>
-          <Field label="Tên đợt"><input style={input} value={form.ten} onChange={(e) => setForm({ ...form, ten: e.target.value })} /></Field>
-          <Field label="Học kỳ"><input style={input} placeholder="VD: HK1 2025-2026" value={form.hocKy} onChange={(e) => setForm({ ...form, hocKy: e.target.value })} /></Field>
-          <Field label="Thời gian bắt đầu"><input style={input} type="datetime-local" value={form.batDau} onChange={(e) => setForm({ ...form, batDau: e.target.value })} /></Field>
-          <Field label="Thời gian kết thúc"><input style={input} type="datetime-local" value={form.ketThuc} onChange={(e) => setForm({ ...form, ketThuc: e.target.value })} /></Field>
-          {loi && <div style={{ color: '#e74c3c', fontSize: '13px', marginBottom: '10px' }}>{loi}</div>}
-          <div style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end' }}>
-            <button onClick={dongModal} style={btn('#ecf0f1')}>Hủy</button>
-            <button onClick={taoDot} style={btn('#f39c12')}>Lưu</button>
-          </div>
-        </Modal>
-      )}
-
-      {/* Modal xác nhận xóa */}
-      {modal?.loai === 'xoa' && (
-        <Modal title="Xác nhận xóa" onClose={dongModal}>
-          <p style={{ fontSize: '14px' }}>Bạn có chắc muốn xóa lớp <strong>{modal.data.maLop}</strong>?</p>
-          <div style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end' }}>
-            <button onClick={dongModal} style={btn('#ecf0f1')}>Hủy</button>
-            <button onClick={xoa} style={btn('#e74c3c')}>Xóa</button>
-          </div>
-        </Modal>
-      )}
-
-      {/* Modal chi tiết */}
-      {modal?.loai === 'chitiet' && (
-        <Modal title="Chi tiết lớp học phần" onClose={dongModal}>
-          <div style={{ fontSize: '14px', color: '#34495e', lineHeight: '2' }}>
-            {[['Mã lớp', modal.data.maLop], ['Học phần', `${modal.data.maHocPhan} - ${modal.data.tenHocPhan}`], ['Số tín chỉ', modal.data.tinChi], ['Giảng viên', modal.data.giangVien], ['Phòng học', modal.data.phong], ['Lịch học', `${modal.data.thu} - ${modal.data.ca}`], ['Sĩ số', `${modal.data.daDangKy}/${modal.data.siSoToiDa}`], ['Học phí', modal.data.hocPhi], ['Học kỳ', modal.data.hocKy], ['Trạng thái', modal.data.trangThai]].map(([k, v]) => (
-              <div key={k} style={row}><span>{k}:</span> <strong style={{ textAlign: 'right' }}>{v}</strong></div>
-            ))}
-          </div>
-        </Modal>
-      )}
+      {/* Delete Confirm */}
+      <ConfirmDialog
+        open={showDeleteDialog}
+        onClose={() => setShowDeleteDialog(false)}
+        onConfirm={handleDelete}
+        message={`Bạn có chắc chắn muốn xóa tài khoản "${selectedUser?.hoTen}"? Hành động này không thể hoàn tác.`}
+      />
     </div>
-  );
+  )
+}
+
+function fieldLabel(key) {
+  const map = {
+    ma: 'Mã số', hoTen: 'Họ và tên', email: 'Email',
+    khoa: 'Khóa', lop: 'Lớp', nganh: 'Ngành', khoa_: 'Khoa',
+    khoaNganh: 'Khoa/Ngành', chucVu: 'Chức vụ', boPhan: 'Bộ phận',
+  }
+  return map[key] || key
+}
+
+function Th({ children }) {
+  return (
+    <th style={{ padding: '12px 14px', textAlign: 'left', fontWeight: 700, fontSize: '12px', color: '#616161', textTransform: 'uppercase', letterSpacing: '0.5px', whiteSpace: 'nowrap' }}>
+      {children}
+    </th>
+  )
+}
+
+function Td({ children, style }) {
+  return (
+    <td style={{ padding: '12px 14px', color: '#424242', fontSize: '13px', whiteSpace: 'nowrap', ...style }}>
+      {children}
+    </td>
+  )
+}
+
+function TableRow({ children, even }) {
+  const [hov, setHov] = useState(false)
+  return (
+    <tr
+      onMouseEnter={() => setHov(true)}
+      onMouseLeave={() => setHov(false)}
+      style={{
+        background: hov ? '#F0F7FF' : even ? '#FFFFFF' : '#FAFAFA',
+        borderBottom: '1px solid #F0F0F0',
+        transition: 'background 0.12s',
+      }}
+    >
+      {children}
+    </tr>
+  )
 }

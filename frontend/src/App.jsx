@@ -1,25 +1,27 @@
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import LoginPage from './pages/LoginPage'
 import SinhVienPage from './pages/SinhVienPage'
-import AdminPage from './pages/AdminPage'
+import DangKyHocPhanPage from './pages/DangKyHocPhanPage'
+import ThoiKhoaBieuPage from './pages/ThoiKhoaBieuPage'
 
-function App() {
+function RequireAuth({ children }) {
+  try {
+    const session = JSON.parse(localStorage.getItem('portal-session') || 'null')
+    return session?.role === 'STUDENT' ? children : <Navigate to="/login" replace />
+  } catch { return <Navigate to="/login" replace /> }
+}
+
+export default function App() {
   return (
     <BrowserRouter>
-      {/* Thanh Menu điều hướng */}
-      <nav style={{ padding: '15px 30px', background: '#2c3e50', marginBottom: '20px' }}>
-        <Link to="/" style={{ color: 'white', marginRight: '30px', textDecoration: 'none', fontSize: '18px', fontWeight: 'bold' }}>Trang Sinh Viên</Link>
-        <Link to="/admin" style={{ color: 'white', textDecoration: 'none', fontSize: '18px', fontWeight: 'bold' }}>Trang Admin</Link>
-      </nav>
-
-      {/* Khu vực nội dung thay đổi theo link */}
-      <div style={{ padding: '0 30px' }}>
-        <Routes>
-          <Route path="/" element={<SinhVienPage />} />
-          <Route path="/admin" element={<AdminPage />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/sinh-vien" element={<SinhVienPage />} />
+        <Route path="/sinh-vien/dang-ky" element={<RequireAuth><DangKyHocPhanPage /></RequireAuth>} />
+        <Route path="/sinh-vien/thoi-khoa-bieu" element={<RequireAuth><ThoiKhoaBieuPage /></RequireAuth>} />
+        <Route path="*" element={<Navigate to="/login" replace />} />
+      </Routes>
     </BrowserRouter>
   )
 }
-
-export default App
