@@ -1,0 +1,67 @@
+.facility-page {
+  min-height: 100vh; display: flex; background: #fafafa; color: #171717;
+  font-family: Inter, 'Segoe UI', sans-serif;
+}
+.facility-sidebar { width: 220px; flex: 0 0 220px; display: flex; flex-direction: column; padding: 28px 18px 20px; border-right: 1px solid #ccc; background: #fff; }
+.facility-brand { display: flex; align-items: center; gap: 10px; padding: 0 5px 42px; color: inherit; text-decoration: none; }
+.facility-brand > span { width: 34px; height: 34px; display: grid; place-items: center; border: 1.5px solid #171717; border-radius: 50%; font-size: 12px; font-weight: 800; }
+.facility-brand b, .facility-brand small, .facility-user b, .facility-user small { display: block; }
+.facility-brand b { font-size: 12px; letter-spacing: .1em; }
+.facility-brand small, .facility-user small { margin-top: 4px; color: #777; font-size: 10px; }
+.facility-nav-label { padding: 0 9px 10px; color: #777; font-size: 9px; font-weight: 700; letter-spacing: .12em; }
+.facility-nav { padding: 10px; border-left: 2px solid transparent; color: #555; font-size: 11px; text-decoration: none; }
+.facility-nav.active { border-left-color: #171717; background: #f1f1f1; color: #171717; font-weight: 700; }
+.facility-sidebar-bottom { margin-top: auto; }
+.facility-user { display: flex; align-items: center; gap: 9px; padding: 14px 4px; border-top: 1px solid #ddd; }
+.facility-avatar { width: 29px; height: 29px; display: grid; place-items: center; border: 1px solid #171717; border-radius: 50%; font-size: 9px; }
+.facility-user b { font-size: 10px; }
+.facility-sidebar-bottom > button { width: 100%; display: flex; justify-content: space-between; padding: 9px 4px; border: 0; background: none; color: #555; font-size: 10px; text-align: left; cursor: pointer; }
+.facility-main { width: min(1420px, 100%); margin: auto; padding: 0 42px 45px; }
+.facility-topbar { height: 59px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #ddd; color: #777; font-size: 10px; }
+.facility-topbar b { color: #333; font-weight: 600; }
+.facility-live { display: flex; align-items: center; gap: 7px; }
+.facility-live i, .facility-status i { width: 6px; height: 6px; border-radius: 50%; background: #555; }
+.facility-heading { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; padding: 35px 0 21px; }
+.facility-kicker { color: #666; font-size: 9px; font-weight: 700; letter-spacing: .14em; }
+.facility-heading h1 { margin: 7px 0; font-size: 29px; font-weight: 500; letter-spacing: -.045em; }
+.facility-heading p, .facility-card-heading p { margin: 0; color: #777; font-size: 11px; }
+.facility-primary, .facility-modal-actions button[type='submit'] { padding: 10px 13px; border: 1px solid #171717; background: #171717; color: white; font-size: 10px; font-weight: 600; cursor: pointer; }
+.facility-primary:hover, .facility-modal-actions button[type='submit']:hover { background: #444; }
+.facility-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 18px; }
+.facility-stats article { min-height: 105px; padding: 15px 17px; border: 1px solid #ddd; background: white; }
+.facility-stats article > span, .facility-stats small { display: block; color: #777; font-size: 10px; }
+.facility-stats b { display: block; margin: 8px 0 4px; font-size: 22px; font-weight: 500; }
+.facility-card { overflow: hidden; border: 1px solid #ddd; background: white; }
+.facility-card-heading { display: flex; align-items: center; justify-content: space-between; padding: 18px 19px 14px; }
+.facility-card-heading h2 { margin: 0 0 5px; font-size: 14px; font-weight: 600; }
+.facility-card-heading p { font-size: 10px; }
+.facility-export, .facility-edit { padding: 7px 9px; border: 1px solid #ccc; background: white; color: #444; font-size: 9px; font-weight: 600; cursor: pointer; }
+.facility-export:hover, .facility-edit:hover { background: #f3f3f3; }
+.facility-filters { display: flex; gap: 10px; padding: 0 19px 13px; }
+.facility-search { height: 34px; display: flex; align-items: center; gap: 8px; flex: 1; padding: 0 9px; border: 1px solid #ccc; color: #777; }
+.facility-search input { width: 100%; border: 0; outline: 0; font-size: 10px; }
+.facility-filters select, .facility-form-grid select { min-width: 130px; padding: 0 9px; border: 1px solid #ccc; background: white; color: #444; font: inherit; font-size: 10px; }
+.facility-table-wrap { overflow: auto; }
+.facility-table { width: 100%; border-collapse: collapse; white-space: nowrap; }
+.facility-table th { padding: 10px 12px; background: #f5f5f5; color: #777; font-size: 9px; font-weight: 600; text-align: left; text-transform: uppercase; }
+.facility-table th:first-child, .facility-table td:first-child { padding-left: 19px; }
+.facility-table td { padding: 12px; border-top: 1px solid #eee; color: #555; font-size: 10px; }
+.facility-table td > b { color: #222; font-size: 10px; }
+.facility-status { display: inline-flex; align-items: center; gap: 6px; padding: 4px 7px; border: 1px solid #ddd; background: #f7f7f7; color: #444; font-size: 9px; }
+.facility-table-foot { padding: 12px 19px; border-top: 1px solid #eee; color: #777; font-size: 9px; }
+.facility-empty { padding: 35px; color: #777; font-size: 11px; text-align: center; }
+.facility-modal-backdrop { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 18px; background: #0008; }
+.facility-modal { width: min(520px, 100%); padding: 21px; border: 1px solid #bbb; background: white; box-shadow: 0 15px 50px #0002; }
+.facility-modal-head { display: flex; justify-content: space-between; padding-bottom: 15px; border-bottom: 1px solid #ddd; }
+.facility-modal-head span { color: #777; font-size: 9px; font-weight: 700; letter-spacing: .1em; }
+.facility-modal-head h2 { margin: 6px 0 0; font-size: 18px; font-weight: 500; }
+.facility-modal-head > button { border: 0; background: none; color: #555; font-size: 23px; cursor: pointer; }
+.facility-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; padding: 18px 0; }
+.facility-form-grid label { display: grid; gap: 6px; color: #555; font-size: 10px; }
+.facility-form-grid input, .facility-form-grid select { height: 35px; min-width: 0; padding: 0 9px; border: 1px solid #ccc; background: white; color: #222; font: inherit; font-size: 10px; }
+.facility-form-grid label.wide { grid-column: 1 / -1; }
+.facility-modal-actions { display: flex; justify-content: flex-end; gap: 8px; padding-top: 13px; border-top: 1px solid #ddd; }
+.facility-modal-actions button { padding: 9px 13px; border: 1px solid #ccc; background: white; color: #444; font-size: 10px; cursor: pointer; }
+@media (max-width: 900px) { .facility-sidebar { width: 195px; flex-basis: 195px; } .facility-main { padding: 0 22px 30px; } .facility-stats { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px) { .facility-page { display: block; } .facility-sidebar { width: 100%; padding: 12px 14px; } .facility-brand { padding: 0 3px 12px; } .facility-nav-label, .facility-sidebar-bottom, .facility-nav { display: none; } .facility-main { padding: 0 13px 25px; } .facility-heading { align-items: flex-start; flex-direction: column; padding: 24px 0 17px; } .facility-heading h1 { font-size: 25px; } .facility-stats { gap: 7px; } .facility-stats article { min-height: 95px; padding: 12px; } .facility-card-heading, .facility-filters { padding-right: 12px; padding-left: 12px; } .facility-filters { flex-direction: column; } .facility-filters select { height: 34px; } .facility-form-grid { grid-template-columns: 1fr; } }
+@media print { .facility-sidebar, .facility-topbar, .facility-primary, .facility-export, .facility-edit { display: none !important; } .facility-main { padding: 0; } }
