@@ -9,6 +9,8 @@ const menu = [
 
 export default function StudentLayout({ active, children, breadcrumb }) {
   const navigate = useNavigate()
+  const session = (() => { try { return JSON.parse(localStorage.getItem('portal-session') || 'null') } catch { return null } })()
+  const studentAccount = session?.username || 'SV001'
   const logout = () => { localStorage.removeItem('portal-session'); navigate('/login', { replace: true }) }
   return (
     <div className="student-shell">
@@ -21,7 +23,7 @@ export default function StudentLayout({ active, children, breadcrumb }) {
           {menu.map((item) => <NavLink key={item.key} to={item.to} className={({ isActive }) => `student-nav-link ${active === item.key || isActive && active !== 'dang-ky' ? 'active' : ''}`}>{item.label}</NavLink>)}
         </nav>
         <div className="student-sidebar-bottom">
-          <div className="student-account-mini"><span className="student-avatar">N</span><span><strong>Nguyễn Văn A</strong><small>SV001 · Khóa 2022</small></span></div>
+          <div className="student-account-mini"><span className="student-avatar">SV</span><span><strong>Sinh viên</strong><small>{studentAccount}</small></span></div>
           <button className="logout-link" onClick={logout}>Đăng xuất <span>↗</span></button>
         </div>
       </aside>

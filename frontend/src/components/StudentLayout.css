@@ -8,3 +8,5 @@
 @media (max-width:640px) { .login-card { padding:30px 22px; }.login-field { grid-template-columns:1fr; gap:7px; }.login-actions { justify-content:stretch; }.login-actions .button { flex:1; } }
 
 .schedule-block.span-2{height:130px}.schedule-block.span-3{height:200px}
+
+@media(max-width:800px){.student-sidebar-bottom{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:8px;padding:8px 0 0;border-top:1px solid #ccc}.student-account-mini{margin:0}.logout-link{width:auto}}
