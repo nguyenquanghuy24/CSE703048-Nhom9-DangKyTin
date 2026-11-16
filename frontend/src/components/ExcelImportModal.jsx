@@ -3,7 +3,7 @@ import './ExcelImportModal.css'
 
 const normalize = (value) => String(value ?? '').trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D').toLowerCase().replace(/[^a-z0-9]/g, '')
 
-export default function ExcelImportModal({ title = 'Nhập dữ liệu bằng Excel', fields, onImport, onClose }) {
+export default function ExcelImportModal({ title = 'Nhập dữ liệu bằng Excel', fields, onImport, onClose, hint = '' }) {
   const [fileName, setFileName] = useState('')
   const [rows, setRows] = useState([])
   const [error, setError] = useState('')
@@ -62,7 +62,7 @@ export default function ExcelImportModal({ title = 'Nhập dữ liệu bằng Ex
     <section className="excel-import-dialog" role="dialog" aria-modal="true" aria-labelledby="excel-import-title">
       <header className="excel-import-header"><div><span>NHẬP THEO BẢNG TÍNH</span><h2 id="excel-import-title">{title}</h2></div><button aria-label="Đóng" onClick={onClose}>×</button></header>
       <div className="excel-import-body">
-        <div className="excel-import-instructions"><b>1.</b><span>Tải tệp mẫu và giữ nguyên hàng tiêu đề cột.</span><button type="button" onClick={downloadTemplate}>Tải mẫu .xlsx</button></div>
+        <div className="excel-import-instructions"><b>1.</b><span>Tải tệp mẫu và giữ nguyên hàng tiêu đề cột.{hint && <small className="excel-import-hint">{hint}</small>}</span><button type="button" onClick={downloadTemplate}>Tải mẫu .xlsx</button></div>
         <label className="excel-file-picker"><input type="file" accept=".xlsx,.xls,.csv" onChange={(event) => event.target.files?.[0] && readFile(event.target.files[0])} /><span className="excel-upload-icon">↑</span><b>{busy ? 'Đang đọc tệp…' : fileName || 'Chọn tệp Excel hoặc CSV'}</b><small>Định dạng .xlsx, .xls hoặc .csv</small></label>
         {error && <p className="excel-import-error" role="alert">{error}</p>}
         {rows.length > 0 && <section className="excel-preview"><div className="excel-preview-heading"><b>Xem trước {rows.length} dòng hợp lệ</b>{skipped > 0 && <span>Bỏ qua {skipped} dòng thiếu thông tin bắt buộc</span>}</div><div className="excel-preview-scroll"><table><thead><tr>{fields.map((field) => <th key={field.key}>{field.label}</th>)}</tr></thead><tbody>{rows.slice(0, 5).map((row, index) => <tr key={`${index}-${row[requiredFields[0]?.key]}`}>{fields.map((field) => <td key={field.key}>{row[field.key] || '—'}</td>)}</tr>)}</tbody></table></div>{rows.length > 5 && <small className="excel-preview-more">Còn {rows.length - 5} dòng sẽ được nhập khi xác nhận.</small>}</section>}
