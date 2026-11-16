@@ -34,7 +34,7 @@ export default function DangKyHocPhanPage() {
     setConfirm(null)
   }
   return <StudentLayout active={tab === 'registered' ? 'da-dang-ky' : 'dang-ky'} breadcrumb="Đăng ký học phần">
-    <div className="student-page-heading"><div><span className="eyebrow">Học kỳ II · Năm học 2025–2026</span><h1>Đăng ký học phần</h1><p>Chọn lớp học phần phù hợp với kế hoạch học tập của bạn.</p></div><div className="round-card"><span>Đợt đăng ký đang mở</span><strong>Đăng ký học kỳ II</strong><small>01/11/2025 — 15/11/2025</small></div></div>
+    <div className="student-page-heading"><div><span className="eyebrow">Học kỳ I · Năm học 2026–2027</span><h1>Đăng ký học phần</h1><p>Chọn lớp học phần phù hợp với kế hoạch học tập của bạn.</p></div><div className="round-card"><span>Đợt đăng ký sắp mở</span><strong>Đăng ký học kỳ I</strong><small>20/11/2026 — 15/12/2026</small></div></div>
     {notice && <Notice type={notice.type}>{notice.message}</Notice>}
     <div className="student-stats"><div><span>Số tín chỉ đã đăng ký</span><strong>{totalCredits} / 24</strong></div><div><span>Lớp học phần</span><strong>{registered.length}</strong></div><div><span>Trạng thái học vụ</span><strong>Bình thường</strong></div></div>
     <div className="student-tabs"><button className={tab === 'available' ? 'active' : ''} onClick={() => chooseTab('available')}>Danh sách học phần</button><button className={tab === 'registered' ? 'active' : ''} onClick={() => chooseTab('registered')}>Học phần đã đăng ký <b>{registered.length}</b></button></div>
