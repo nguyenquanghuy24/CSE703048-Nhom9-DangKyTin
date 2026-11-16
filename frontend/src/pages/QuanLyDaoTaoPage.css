@@ -8,3 +8,6 @@
 /* Keep actor navigation and logout anchored to the viewport on desktop. */
 .portal-sidebar{position:fixed;inset:0 auto 0 0;height:100vh;overflow-y:auto;z-index:20}.portal-main{margin-left:230px}
 @media(max-width:700px){.portal-sidebar{position:sticky;inset:auto;height:auto;overflow:visible;z-index:20}.portal-main{margin-left:0}}
+
+.student-detail-modal{max-height:min(90vh,800px);overflow:auto}.student-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 20px;margin:15px 0}.student-detail-grid div{display:grid;grid-template-columns:130px 1fr;gap:8px;padding:9px 0;border-bottom:1px solid #eee;font-size:11px}.student-detail-grid dt{color:#777}.student-detail-grid dd{margin:0;color:#222}.student-detail-modal h3{margin:18px 0 8px;font-size:14px;font-weight:600}
+@media(max-width:600px){.student-detail-grid{grid-template-columns:1fr}.student-detail-grid div{grid-template-columns:120px 1fr}}
