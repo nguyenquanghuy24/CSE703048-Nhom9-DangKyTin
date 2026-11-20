@@ -3,10 +3,10 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import './LoginPage.css'
 
 const ROLES = [
-  { id: 'STUDENT', label: 'Sinh viên', username: 'SV001', email: 'sinhvien@edu.vn', password: 'sv123', home: '/sinh-vien/dang-ky' },
+  { id: 'STUDENT', label: 'Sinh viên', username: '23010030', email: '23010030@st.phenikaa-uni.edu.vn', password: 'sv123', home: '/sinh-vien/dang-ky' },
   { id: 'ADMIN', label: 'Quản trị viên', username: 'admin', email: 'admin@edu.vn', password: 'admin123', home: '/admin' },
   { id: 'TRAINING', label: 'Phòng Đào tạo', username: 'pdt', email: 'pdt@edu.vn', password: 'pdt123', home: '/admin/dao-tao?module=ke-hoach' },
-  { id: 'DEPARTMENT', label: 'Quản lý Khoa/Ngành', username: 'khoa', email: 'khoa@edu.vn', password: 'khoa123', home: '/admin/dao-tao?module=hoc-phan' },
+  { id: 'DEPARTMENT', label: 'Quản lý Khoa/Ngành', username: 'khoa', email: 'khoa@edu.vn', password: 'khoa123', home: '/admin/dao-tao?module=chuong-trinh', facultyName: 'Khoa CNTT', programIds: ['480201-2023', '480103-2023', '480107-2025'] },
   { id: 'FACILITIES', label: 'Quản lý Cơ sở vật chất', username: 'csvc', email: 'csvc@edu.vn', password: 'csvc123', home: '/quan-ly-csvc' },
   { id: 'FINANCE', label: 'Quản lý Tài chính', username: 'taichinh', email: 'taichinh@edu.vn', password: 'tc123', home: '/tai-chinh' },
 ]
@@ -36,7 +36,7 @@ export default function LoginPage() {
       let savedPasswords = {}
       try { savedPasswords = JSON.parse(localStorage.getItem('portal-passwords') || '{}') } catch { savedPasswords = {} }
       if (account && password === (savedPasswords[account.id] || account.password)) {
-        localStorage.setItem('portal-session', JSON.stringify({ role: account.id, username: username.trim(), email: account.email, loggedInAt: Date.now(), lastActivityAt: Date.now() }))
+        localStorage.setItem('portal-session', JSON.stringify({ role: account.id, username: username.trim(), email: account.email, facultyName: account.facultyName, programIds: account.programIds || [], loggedInAt: Date.now(), lastActivityAt: Date.now() }))
         navigate(account.home)
       } else {
         setError('Tên đăng nhập hoặc mật khẩu không đúng với vai trò đã chọn.')

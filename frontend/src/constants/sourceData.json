@@ -1,0 +1,1849 @@
+{
+  "hocPhan": [
+    {
+      "Mã": "CSE701010",
+      "Tên": "Lập trình hướng đối tượng",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa CNTT",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "CSE701012",
+      "Tên": "Nhập môn lập trình",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa CNTT",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "CSE701020",
+      "Tên": "Toán rời rạc",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa CNTT",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "CSE702017",
+      "Tên": "Hệ điều hành",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa CNTT",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "CSE702030",
+      "Tên": "Cơ sở dữ liệu",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa CNTT",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "CSE702041",
+      "Tên": "Mạng máy tính",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa CNTT",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "CSE703015",
+      "Tên": "Phân tích và thiết kế hệ thống",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa CNTT",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "CSE703040",
+      "Tên": "Trí tuệ nhân tạo",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa CNTT",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "CSE703052",
+      "Tên": "Học máy",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa CNTT",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "CSE703061",
+      "Tên": "An toàn thông tin",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa CNTT",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "CSE704005",
+      "Tên": "Phát triển ứng dụng web",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa CNTT",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "CSE704018",
+      "Tên": "Khai phá dữ liệu",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa CNTT",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "BUS701001",
+      "Tên": "Kinh tế vi mô",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Kinh tế",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "BUS701002",
+      "Tên": "Kinh tế vĩ mô",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Kinh tế",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "BUS702010",
+      "Tên": "Nguyên lý kế toán",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Kinh tế",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "BUS702021",
+      "Tên": "Quản trị học",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Kinh tế",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "BUS702033",
+      "Tên": "Marketing căn bản",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Kinh tế",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "BUS703014",
+      "Tên": "Tài chính doanh nghiệp",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Kinh tế",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "BUS703025",
+      "Tên": "Thương mại điện tử",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Kinh tế",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "BUS703040",
+      "Tên": "Quản trị chuỗi cung ứng",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Kinh tế",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "BUS703052",
+      "Tên": "Kinh doanh quốc tế",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Kinh tế",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "BUS704008",
+      "Tên": "Kế toán tài chính",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Kinh tế",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "LAW701001",
+      "Tên": "Lý luận nhà nước và pháp luật",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Luật",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "LAW702012",
+      "Tên": "Luật hiến pháp",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Luật",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "LAW702025",
+      "Tên": "Luật dân sự",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Luật",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "LAW703010",
+      "Tên": "Luật thương mại",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Luật",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "LAW703031",
+      "Tên": "Luật hình sự",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Luật",
+      "Trạng thái": "Tạm khóa"
+    },
+    {
+      "Mã": "FLG701010",
+      "Tên": "Tiếng Anh học thuật 1",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Ngoại ngữ",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "FLG702015",
+      "Tên": "Ngữ pháp tiếng Anh nâng cao",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Ngoại ngữ",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "FLG702028",
+      "Tên": "Tiếng Trung sơ cấp",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Ngoại ngữ",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "FLG702039",
+      "Tên": "Tiếng Hàn sơ cấp",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Ngoại ngữ",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "FLG702047",
+      "Tên": "Tiếng Nhật sơ cấp",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Ngoại ngữ",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "NUR701005",
+      "Tên": "Giải phẫu - Sinh lý",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Điều dưỡng",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "NUR702011",
+      "Tên": "Điều dưỡng cơ bản",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Điều dưỡng",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "NUR703022",
+      "Tên": "Chăm sóc sức khỏe người lớn",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Điều dưỡng",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "PHA701003",
+      "Tên": "Hóa dược",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Dược",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "PHA702014",
+      "Tên": "Dược lý 1",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Dược",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "MEC701002",
+      "Tên": "Cơ học kỹ thuật",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Cơ khí - Ô tô",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "MEC702015",
+      "Tên": "Nguyên lý động cơ đốt trong",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Cơ khí - Ô tô",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "MEC703021",
+      "Tên": "Kỹ thuật robot",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Cơ khí - Ô tô",
+      "Trạng thái": "Tạm khóa"
+    },
+    {
+      "Mã": "ELE701004",
+      "Tên": "Mạch điện",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Điện - Điện tử",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "ELE702016",
+      "Tên": "Điện tử số",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Điện - Điện tử",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "ELE703027",
+      "Tên": "Thiết kế vi mạch bán dẫn",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Điện - Điện tử",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "ELE703034",
+      "Tên": "Điều khiển tự động",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Điện - Điện tử",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "TOU701002",
+      "Tên": "Tổng quan du lịch",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Du lịch",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "TOU702013",
+      "Tên": "Quản trị khách sạn",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Du lịch",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "TOU702024",
+      "Tên": "Hướng dẫn du lịch quốc tế",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Du lịch",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "MAT701003",
+      "Tên": "Vật liệu tiên tiến và công nghệ nano",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Vật liệu - Sinh học",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "BIO701008",
+      "Tên": "Sinh học phân tử",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Vật liệu - Sinh học",
+      "Trạng thái": "Tạm khóa"
+    },
+    {
+      "Mã": "GEN701001",
+      "Tên": "Giải tích 1",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Khoa học cơ bản",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "GEN701010",
+      "Tên": "Đại số tuyến tính",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Khoa học cơ bản",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "GEN701020",
+      "Tên": "Triết học Mác - Lênin",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Khoa học cơ bản",
+      "Trạng thái": "Đang mở"
+    },
+    {
+      "Mã": "GEN701030",
+      "Tên": "Xác suất thống kê",
+      "Số tín chỉ": 3,
+      "Khoa phụ trách": "Khoa Khoa học cơ bản",
+      "Trạng thái": "Đang mở"
+    }
+  ],
+  "lopHocPhan": [
+    {
+      "Mã": "BUS701001.1",
+      "Học phần": "Kinh tế vi mô",
+      "Giảng viên": "ThS. Bùi Thanh Tùng",
+      "Lịch học": "Thứ 5 · Tiết 4-6",
+      "Phòng": "B2-202",
+      "Sĩ số": "33/40",
+      "Trạng thái": "Đã duyệt"
+    },
+    {
+      "Mã": "BUS701002.1",
+      "Học phần": "Kinh tế vĩ mô",
+      "Giảng viên": "ThS. Nguyễn Văn Anh",
+      "Lịch học": "Thứ 3 · Tiết 4-6",
+      "Phòng": "B1-101",
+      "Sĩ số": "20/40",
+      "Trạng thái": "Đã duyệt"
+    },
+    {
+      "Mã": "BUS701002.2",
+      "Học phần": "Kinh tế vĩ mô",
+      "Giảng viên": "ThS. Lý Thị Ngọc",
+      "Lịch học": "Thứ 3 · Tiết 4-6",
+      "Phòng": "A4-101",
+      "Sĩ số": "26/60",
+      "Trạng thái": "Đã duyệt"
+    },
+    {
+      "Mã": "BUS702021.1",
+      "Học phần": "Quản trị học",
+      "Giảng viên": "ThS. Đinh Thị Thảo",
+      "Lịch học": "Thứ 7 · Tiết 1-3",
+      "Phòng": "B1-101",
+      "Sĩ số": "38/50",
+      "Trạng thái": "Chờ duyệt"
+    },
+    {
+      "Mã": "BUS702033.1",
+      "Học phần": "Marketing căn bản",
+      "Giảng viên": "TS. Dương Thị Hạnh",
+      "Lịch học": "Thứ 6 · Tiết 4-6",
+      "Phòng": "B3-101",
+      "Sĩ số": "49/50",
+      "Trạng thái": "Đã duyệt"
+    },
+    {
+      "Mã": "BUS702033.2",
+      "Học phần": "Marketing căn bản",
+      "Giảng viên": "TS. Trần Minh Hoàng",
+      "Lịch học": "Thứ 7 · Tiết 4-6",
+      "Phòng": "C1-101",
+      "Sĩ số": "32/50",
+      "Trạng thái": "Đã duyệt"
+    },
+    {
+      "Mã": "BUS703014.1",
+      "Học phần": "Tài chính doanh nghiệp",
+      "Giảng viên": "ThS. Bùi Thanh Tùng",
+      "Lịch học": "Thứ 6 · Tiết 4-6",
+      "Phòng": "A4-201",
+      "Sĩ số": "38/50",
+      "Trạng thái": "Đã duyệt"
+    },
+    {
+      "Mã": "BUS703025.1",
+      "Học phần": "Thương mại điện tử",
+      "Giảng viên": "ThS. Lý Thị Ngọc",
+      "Lịch học": "Thứ 5 · Tiết 1-3",
+      "Phòng": "A4-101",
+      "Sĩ số": "49/50",
+      "Trạng thái": "Chờ duyệt"
+    },
+    {
+      "Mã": "BUS703040.1",
+      "Học phần": "Quản trị chuỗi cung ứng",
+      "Giảng viên": "ThS. Nguyễn Văn Anh",
+      "Lịch học": "Thứ 5 · Tiết 1-3",
+      "Phòng": "B2-202",
+      "Sĩ số": "16/40",
+      "Trạng thái": "Đã duyệt"
+    },
+    {
+      "Mã": "BUS704008.1",
+      "Học phần": "Kế toán tài chính",
+      "Giảng viên": "TS. Đặng Thu Hà",
+      "Lịch học": "Thứ 2 · Tiết 4-6",
+      "Phòng": "A4-102",
+      "Sĩ số": "18/45",
+      "Trạng thái": "Chờ duyệt"
+    },
+    {
+      "Mã": "CSE701010.1",
+      "Học phần": "Lập trình hướng đối tượng",
+      "Giảng viên": "ThS. Lý Thị Ngọc",
+      "Lịch học": "Thứ 4 · Tiết 4-6",
+      "Phòng": "A3-401",
+      "Sĩ số": "39/40",
+      "Trạng thái": "Đã duyệt"
+    },
+    {
+      "Mã": "CSE701012.1",
+      "Học phần": "Nhập môn lập trình",
+      "Giảng viên": "TS. Đặng Thu Hà",
+      "Lịch học": "Thứ 6 · Tiết 1-3",
+      "Phòng": "C2-101",
+      "Sĩ số": "15/30",
+      "Trạng thái": "Đã duyệt"
+    },
+    {
+      "Mã": "CSE701020.1",
+      "Học phần": "Toán rời rạc",
+      "Giảng viên": "ThS. Đinh Thị Thảo",
+      "Lịch học": "Thứ 6 · Tiết 4-6",
+      "Phòng": "A4-102",
+      "Sĩ số": "22/45",
+      "Trạng thái": "Chờ duyệt"
+    },
+    {
+      "Mã": "CSE702017.1",
+      "Học phần": "Hệ điều hành",
+      "Giảng viên": "ThS. Vũ Quang Huy",
+      "Lịch học": "Thứ 7 · Tiết 1-3",
+      "Phòng": "B1-102",
+      "Sĩ số": "32/40",
+      "Trạng thái": "Đã duyệt"
+    },
+    {
+      "Mã": "CSE702030.1",
+      "Học phần": "Cơ sở dữ liệu",
+      "Giảng viên": "ThS. Vũ Quang Huy",
+      "Lịch học": "Thứ 6 · Tiết 4-6",
+      "Phòng": "A3-502",
+      "Sĩ số": "39/40",
+      "Trạng thái": "Đã duyệt"
+    },
+    {
+      "Mã": "CSE702041.1",
+      "Học phần": "Mạng máy tính",
+      "Giảng viên": "TS. Phạm Đức Nam",
+      "Lịch học": "Thứ 3 · Tiết 4-6",
+      "Phòng": "B2-201",
+      "Sĩ số": "45/45",
+      "Trạng thái": "Đã duyệt"
+    },
+    {
+      "Mã": "CSE703052.1",
+      "Học phần": "Học máy",
+      "Giảng viên": "ThS. Vũ Quang Huy",
+      "Lịch học": "Thứ 2 · Tiết 4-6",
+      "Phòng": "A3-502",
+      "Sĩ số": "34/40",
+      "Trạng thái": "Đã duyệt"
+    },
+    {
+      "Mã": "CSE703061.1",
+      "Học phần": "An toàn thông tin",
+      "Giảng viên": "ThS. Đinh Thị Thảo",
+      "Lịch học": "Thứ 2 · Tiết 4-6",
+      "Phòng": "B1-101",
+      "Sĩ số": "17/40",
+      "Trạng thái": "Đã duyệt"
+    },
+    {
+      "Mã": "CSE704005.1",
+      "Học phần": "Phát triển ứng dụng web",
+      "Giảng viên": "TS. Đặng Thu Hà",
+      "Lịch học": "Thứ 7 · Tiết 1-3",
+      "Phòng": "A3-302",
+      "Sĩ số": "23/45",
+      "Trạng thái": "Đã duyệt"
+    },
+    {
+      "Mã": "CSE704018.1",
+      "Học phần": "Khai phá dữ liệu",
+      "Giảng viên": "TS. Dương Thị Hạnh",
+      "Lịch học": "Thứ 2 · Tiết 1-3",
+      "Phòng": "C2-101",
+      "Sĩ số": "21/30",
+      "Trạng thái": "Đã duyệt"
+    },
+    {
+      "Mã": "ELE703027.1",
+      "Học phần": "Thiết kế vi mạch bán dẫn",
+      "Giảng viên": "TS. Trịnh Quốc Bảo",
+      "Lịch học": "Thứ 3 · Tiết 4-6",
+      "Phòng": "A3-502",
+      "Sĩ số": "23/40",
+      "Trạng thái": "Chờ duyệt"
+    },
+    {
+      "Mã": "FLG702015.1",
+      "Học phần": "Ngữ pháp tiếng Anh nâng cao",
+      "Giảng viên": "ThS. Lý Thị Ngọc",
+      "Lịch học": "Thứ 2 · Tiết 4-6",
+      "Phòng": "B2-202",
+      "Sĩ số": "22/40",
+      "Trạng thái": "Đã duyệt"
+    },
+    {
+      "Mã": "FLG702028.1",
+      "Học phần": "Tiếng Trung sơ cấp",
+      "Giảng viên": "TS. Trần Minh Hoàng",
+      "Lịch học": "Thứ 6 · Tiết 4-6",
+      "Phòng": "A4-301",
+      "Sĩ số": "21/40",
+      "Trạng thái": "Đã duyệt"
+    },
+    {
+      "Mã": "FLG702039.1",
+      "Học phần": "Tiếng Hàn sơ cấp",
+      "Giảng viên": "ThS. Nguyễn Văn Anh",
+      "Lịch học": "Thứ 5 · Tiết 4-6",
+      "Phòng": "B3-101",
+      "Sĩ số": "42/45",
+      "Trạng thái": "Đã duyệt"
+    },
+    {
+      "Mã": "FLG702039.2",
+      "Học phần": "Tiếng Hàn sơ cấp",
+      "Giảng viên": "ThS. Hoàng Thị Lan",
+      "Lịch học": "Thứ 2 · Tiết 1-3",
+      "Phòng": "B3-101",
+      "Sĩ số": "47/60",
+      "Trạng thái": "Chờ duyệt"
+    },
+    {
+      "Mã": "FLG702047.1",
+      "Học phần": "Tiếng Nhật sơ cấp",
+      "Giảng viên": "ThS. Cao Minh Đức",
+      "Lịch học": "Thứ 2 · Tiết 4-6",
+      "Phòng": "B1-102",
+      "Sĩ số": "30/40",
+      "Trạng thái": "Đã duyệt"
+    },
+    {
+      "Mã": "GEN701001.1",
+      "Học phần": "Giải tích 1",
+      "Giảng viên": "ThS. Hoàng Thị Lan",
+      "Lịch học": "Thứ 6 · Tiết 4-6",
+      "Phòng": "B1-102",
+      "Sĩ số": "26/40",
+      "Trạng thái": "Đã duyệt"
+    },
+    {
+      "Mã": "GEN701020.1",
+      "Học phần": "Triết học Mác - Lênin",
+      "Giảng viên": "TS. Đặng Thu Hà",
+      "Lịch học": "Thứ 5 · Tiết 1-3",
+      "Phòng": "B3-101",
+      "Sĩ số": "24/60",
+      "Trạng thái": "Chờ duyệt"
+    },
+    {
+      "Mã": "GEN701030.1",
+      "Học phần": "Xác suất thống kê",
+      "Giảng viên": "ThS. Cao Minh Đức",
+      "Lịch học": "Thứ 7 · Tiết 4-6",
+      "Phòng": "B1-102",
+      "Sĩ số": "28/40",
+      "Trạng thái": "Đã duyệt"
+    },
+    {
+      "Mã": "LAW701001.1",
+      "Học phần": "Lý luận nhà nước và pháp luật",
+      "Giảng viên": "TS. Dương Thị Hạnh",
+      "Lịch học": "Thứ 3 · Tiết 1-3",
+      "Phòng": "B2-202",
+      "Sĩ số": "35/45",
+      "Trạng thái": "Đã duyệt"
+    },
+    {
+      "Mã": "LAW701001.2",
+      "Học phần": "Lý luận nhà nước và pháp luật",
+      "Giảng viên": "ThS. Đỗ Mai Phương",
+      "Lịch học": "Thứ 5 · Tiết 4-6",
+      "Phòng": "C1-101",
+      "Sĩ số": "23/45",
+      "Trạng thái": "Đã duyệt"
+    },
+    {
+      "Mã": "LAW702012.1",
+      "Học phần": "Luật hiến pháp",
+      "Giảng viên": "TS. Dương Thị Hạnh",
+      "Lịch học": "Thứ 2 · Tiết 4-6",
+      "Phòng": "B3-101",
+      "Sĩ số": "57/60",
+      "Trạng thái": "Đã duyệt"
+    },
+    {
+      "Mã": "LAW702012.2",
+      "Học phần": "Luật hiến pháp",
+      "Giảng viên": "ThS. Hoàng Thị Lan",
+      "Lịch học": "Thứ 5 · Tiết 4-6",
+      "Phòng": "B1-102",
+      "Sĩ số": "21/40",
+      "Trạng thái": "Đã duyệt"
+    },
+    {
+      "Mã": "LAW702025.1",
+      "Học phần": "Luật dân sự",
+      "Giảng viên": "ThS. Đinh Thị Thảo",
+      "Lịch học": "Thứ 2 · Tiết 1-3",
+      "Phòng": "C1-101",
+      "Sĩ số": "24/50",
+      "Trạng thái": "Đã duyệt"
+    },
+    {
+      "Mã": "LAW702025.2",
+      "Học phần": "Luật dân sự",
+      "Giảng viên": "TS. Đặng Thu Hà",
+      "Lịch học": "Thứ 3 · Tiết 4-6",
+      "Phòng": "B1-102",
+      "Sĩ số": "31/50",
+      "Trạng thái": "Đã duyệt"
+    },
+    {
+      "Mã": "LAW703010.1",
+      "Học phần": "Luật thương mại",
+      "Giảng viên": "ThS. Vũ Quang Huy",
+      "Lịch học": "Thứ 4 · Tiết 1-3",
+      "Phòng": "B1-102",
+      "Sĩ số": "34/50",
+      "Trạng thái": "Đã duyệt"
+    },
+    {
+      "Mã": "MAT701003.1",
+      "Học phần": "Vật liệu tiên tiến và công nghệ nano",
+      "Giảng viên": "PGS.TS. Phan Văn Khánh",
+      "Lịch học": "Thứ 6 · Tiết 1-3",
+      "Phòng": "A3-401",
+      "Sĩ số": "24/40",
+      "Trạng thái": "Đã duyệt"
+    },
+    {
+      "Mã": "MEC702015.1",
+      "Học phần": "Nguyên lý động cơ đốt trong",
+      "Giảng viên": "PGS.TS. Lê Thị Hoa",
+      "Lịch học": "Thứ 4 · Tiết 4-6",
+      "Phòng": "B2-201",
+      "Sĩ số": "36/45",
+      "Trạng thái": "Đã duyệt"
+    },
+    {
+      "Mã": "MEC702015.2",
+      "Học phần": "Nguyên lý động cơ đốt trong",
+      "Giảng viên": "TS. Trịnh Quốc Bảo",
+      "Lịch học": "Thứ 6 · Tiết 1-3",
+      "Phòng": "B3-101",
+      "Sĩ số": "45/50",
+      "Trạng thái": "Đã duyệt"
+    },
+    {
+      "Mã": "NUR701005.1",
+      "Học phần": "Giải phẫu - Sinh lý",
+      "Giảng viên": "ThS. Lý Thị Ngọc",
+      "Lịch học": "Thứ 2 · Tiết 1-3",
+      "Phòng": "A4-201",
+      "Sĩ số": "20/50",
+      "Trạng thái": "Đã duyệt"
+    },
+    {
+      "Mã": "NUR703022.1",
+      "Học phần": "Chăm sóc sức khỏe người lớn",
+      "Giảng viên": "TS. Ngô Văn Long",
+      "Lịch học": "Thứ 6 · Tiết 1-3",
+      "Phòng": "A3-301",
+      "Sĩ số": "36/45",
+      "Trạng thái": "Đã duyệt"
+    },
+    {
+      "Mã": "PHA701003.1",
+      "Học phần": "Hóa dược",
+      "Giảng viên": "ThS. Vũ Quang Huy",
+      "Lịch học": "Thứ 5 · Tiết 4-6",
+      "Phòng": "A3-502",
+      "Sĩ số": "32/40",
+      "Trạng thái": "Đã duyệt"
+    },
+    {
+      "Mã": "TOU701002.1",
+      "Học phần": "Tổng quan du lịch",
+      "Giảng viên": "TS. Dương Thị Hạnh",
+      "Lịch học": "Thứ 7 · Tiết 4-6",
+      "Phòng": "B2-202",
+      "Sĩ số": "35/45",
+      "Trạng thái": "Đã duyệt"
+    },
+    {
+      "Mã": "TOU701002.2",
+      "Học phần": "Tổng quan du lịch",
+      "Giảng viên": "PGS.TS. Phan Văn Khánh",
+      "Lịch học": "Thứ 2 · Tiết 1-3",
+      "Phòng": "B2-201",
+      "Sĩ số": "27/45",
+      "Trạng thái": "Đã duyệt"
+    },
+    {
+      "Mã": "TOU702013.1",
+      "Học phần": "Quản trị khách sạn",
+      "Giảng viên": "TS. Ngô Văn Long",
+      "Lịch học": "Thứ 4 · Tiết 1-3",
+      "Phòng": "A4-102",
+      "Sĩ số": "29/40",
+      "Trạng thái": "Đã duyệt"
+    },
+    {
+      "Mã": "TOU702024.1",
+      "Học phần": "Hướng dẫn du lịch quốc tế",
+      "Giảng viên": "TS. Trần Minh Hoàng",
+      "Lịch học": "Thứ 3 · Tiết 1-3",
+      "Phòng": "A4-101",
+      "Sĩ số": "36/60",
+      "Trạng thái": "Đã duyệt"
+    }
+  ],
+  "dotDangKy": [
+    {
+      "Mã": "DKH_2025_2026_3",
+      "Tên": "Đăng ký học kỳ hè",
+      "Học kỳ": "HK Hè - 2025/2026",
+      "Bắt đầu": "26/05/2026",
+      "Kết thúc": "02/06/2026",
+      "Trạng thái": "Đã đóng"
+    },
+    {
+      "Mã": "DKH_2026_2027_1",
+      "Tên": "Đăng ký học kỳ I",
+      "Học kỳ": "HK I - 2026/2027",
+      "Bắt đầu": "03/08/2026",
+      "Kết thúc": "17/08/2026",
+      "Trạng thái": "Đã đóng"
+    },
+    {
+      "Mã": "DKH_2026_2027_1BS",
+      "Tên": "Đăng ký bổ sung học kỳ I",
+      "Học kỳ": "HK I - 2026/2027",
+      "Bắt đầu": "24/08/2026",
+      "Kết thúc": "28/08/2026",
+      "Trạng thái": "Đã đóng"
+    },
+    {
+      "Mã": "DKH_2026_2027_1RUT",
+      "Tên": "Rút học phần học kỳ I",
+      "Học kỳ": "HK I - 2026/2027",
+      "Bắt đầu": "12/10/2026",
+      "Kết thúc": "23/10/2026",
+      "Trạng thái": "Đã đóng"
+    },
+    {
+      "Mã": "DKH_2026_2027_2",
+      "Tên": "Đăng ký học kỳ II",
+      "Học kỳ": "HK II - 2026/2027",
+      "Bắt đầu": "04/01/2027",
+      "Kết thúc": "18/01/2027",
+      "Trạng thái": "Chưa mở"
+    },
+    {
+      "Mã": "DKH_2026_2027_2BS",
+      "Tên": "Đăng ký bổ sung học kỳ II",
+      "Học kỳ": "HK II - 2026/2027",
+      "Bắt đầu": "25/01/2027",
+      "Kết thúc": "29/01/2027",
+      "Trạng thái": "Chưa mở"
+    },
+    {
+      "Mã": "DKH_2026_2027_3",
+      "Tên": "Đăng ký học kỳ hè",
+      "Học kỳ": "HK Hè - 2026/2027",
+      "Bắt đầu": "24/05/2027",
+      "Kết thúc": "31/05/2027",
+      "Trạng thái": "Chưa mở"
+    },
+    {
+      "Mã": "DKH_2027_2028_1",
+      "Tên": "Đăng ký học kỳ I",
+      "Học kỳ": "HK I - 2027/2028",
+      "Bắt đầu": "02/08/2027",
+      "Kết thúc": "16/08/2027",
+      "Trạng thái": "Chưa mở"
+    }
+  ],
+  "phongDaoTao": [
+    {
+      "Mã": "A4-101",
+      "Tên": "Phòng A4-101",
+      "Tòa nhà": "A4",
+      "Sức chứa": 60,
+      "Loại phòng": "Lý thuyết",
+      "Trạng thái": "Sẵn sàng"
+    },
+    {
+      "Mã": "A4-102",
+      "Tên": "Phòng A4-102",
+      "Tòa nhà": "A4",
+      "Sức chứa": 60,
+      "Loại phòng": "Lý thuyết",
+      "Trạng thái": "Sẵn sàng"
+    },
+    {
+      "Mã": "A4-201",
+      "Tên": "Phòng A4-201",
+      "Tòa nhà": "A4",
+      "Sức chứa": 50,
+      "Loại phòng": "Lý thuyết",
+      "Trạng thái": "Sẵn sàng"
+    },
+    {
+      "Mã": "A4-301",
+      "Tên": "Phòng A4-301",
+      "Tòa nhà": "A4",
+      "Sức chứa": 70,
+      "Loại phòng": "Lý thuyết",
+      "Trạng thái": "Sẵn sàng"
+    },
+    {
+      "Mã": "B1-101",
+      "Tên": "Phòng B1-101",
+      "Tòa nhà": "B1",
+      "Sức chứa": 80,
+      "Loại phòng": "Lý thuyết",
+      "Trạng thái": "Sẵn sàng"
+    },
+    {
+      "Mã": "B1-102",
+      "Tên": "Phòng B1-102",
+      "Tòa nhà": "B1",
+      "Sức chứa": 80,
+      "Loại phòng": "Lý thuyết",
+      "Trạng thái": "Đang sử dụng"
+    },
+    {
+      "Mã": "B2-201",
+      "Tên": "Phòng B2-201",
+      "Tòa nhà": "B2",
+      "Sức chứa": 45,
+      "Loại phòng": "Lý thuyết",
+      "Trạng thái": "Sẵn sàng"
+    },
+    {
+      "Mã": "B2-202",
+      "Tên": "Phòng B2-202",
+      "Tòa nhà": "B2",
+      "Sức chứa": 45,
+      "Loại phòng": "Lý thuyết",
+      "Trạng thái": "Sẵn sàng"
+    },
+    {
+      "Mã": "B3-101",
+      "Tên": "Phòng B3-101",
+      "Tòa nhà": "B3",
+      "Sức chứa": 100,
+      "Loại phòng": "Lý thuyết",
+      "Trạng thái": "Sẵn sàng"
+    },
+    {
+      "Mã": "C1-101",
+      "Tên": "Phòng C1-101",
+      "Tòa nhà": "C1",
+      "Sức chứa": 50,
+      "Loại phòng": "Lý thuyết",
+      "Trạng thái": "Sẵn sàng"
+    },
+    {
+      "Mã": "C1-201",
+      "Tên": "Phòng C1-201",
+      "Tòa nhà": "C1",
+      "Sức chứa": 60,
+      "Loại phòng": "Lý thuyết",
+      "Trạng thái": "Bảo trì"
+    },
+    {
+      "Mã": "A3-301",
+      "Tên": "Phòng máy A3-301",
+      "Tòa nhà": "A3",
+      "Sức chứa": 45,
+      "Loại phòng": "Thực hành",
+      "Trạng thái": "Sẵn sàng"
+    },
+    {
+      "Mã": "A3-302",
+      "Tên": "Phòng máy A3-302",
+      "Tòa nhà": "A3",
+      "Sức chứa": 45,
+      "Loại phòng": "Thực hành",
+      "Trạng thái": "Sẵn sàng"
+    },
+    {
+      "Mã": "A3-401",
+      "Tên": "Phòng máy A3-401",
+      "Tòa nhà": "A3",
+      "Sức chứa": 40,
+      "Loại phòng": "Thực hành",
+      "Trạng thái": "Sẵn sàng"
+    },
+    {
+      "Mã": "A3-502",
+      "Tên": "Phòng máy A3-502",
+      "Tòa nhà": "A3",
+      "Sức chứa": 40,
+      "Loại phòng": "Thực hành",
+      "Trạng thái": "Đang sử dụng"
+    },
+    {
+      "Mã": "C2-101",
+      "Tên": "Phòng thực hành C2-101",
+      "Tòa nhà": "C2",
+      "Sức chứa": 30,
+      "Loại phòng": "Thực hành",
+      "Trạng thái": "Sẵn sàng"
+    },
+    {
+      "Mã": "C2-102",
+      "Tên": "Phòng thực hành C2-102",
+      "Tòa nhà": "C2",
+      "Sức chứa": 30,
+      "Loại phòng": "Thực hành",
+      "Trạng thái": "Bảo trì"
+    },
+    {
+      "Mã": "D1-HT1",
+      "Tên": "Hội trường D1-HT1",
+      "Tòa nhà": "D1",
+      "Sức chứa": 300,
+      "Loại phòng": "Hội trường",
+      "Trạng thái": "Sẵn sàng"
+    },
+    {
+      "Mã": "D1-HT2",
+      "Tên": "Hội trường D1-HT2",
+      "Tòa nhà": "D1",
+      "Sức chứa": 200,
+      "Loại phòng": "Hội trường",
+      "Trạng thái": "Sẵn sàng"
+    }
+  ],
+  "phongCSVC": [
+    {
+      "Mã phòng": "A4-101",
+      "Tòa nhà": "A4",
+      "Sức chứa": 60,
+      "Loại phòng": "Lý thuyết",
+      "Thiết bị": "Máy chiếu, bảng",
+      "Trạng thái": "Sẵn sàng"
+    },
+    {
+      "Mã phòng": "A4-102",
+      "Tòa nhà": "A4",
+      "Sức chứa": 60,
+      "Loại phòng": "Lý thuyết",
+      "Thiết bị": "Máy chiếu, bảng",
+      "Trạng thái": "Sẵn sàng"
+    },
+    {
+      "Mã phòng": "A4-201",
+      "Tòa nhà": "A4",
+      "Sức chứa": 50,
+      "Loại phòng": "Lý thuyết",
+      "Thiết bị": "Máy chiếu, bảng",
+      "Trạng thái": "Sẵn sàng"
+    },
+    {
+      "Mã phòng": "A4-301",
+      "Tòa nhà": "A4",
+      "Sức chứa": 70,
+      "Loại phòng": "Lý thuyết",
+      "Thiết bị": "Máy chiếu, âm thanh",
+      "Trạng thái": "Sẵn sàng"
+    },
+    {
+      "Mã phòng": "B1-101",
+      "Tòa nhà": "B1",
+      "Sức chứa": 80,
+      "Loại phòng": "Lý thuyết",
+      "Thiết bị": "Máy chiếu, âm thanh",
+      "Trạng thái": "Sẵn sàng"
+    },
+    {
+      "Mã phòng": "B1-102",
+      "Tòa nhà": "B1",
+      "Sức chứa": 80,
+      "Loại phòng": "Lý thuyết",
+      "Thiết bị": "Máy chiếu, âm thanh",
+      "Trạng thái": "Đang sử dụng"
+    },
+    {
+      "Mã phòng": "B2-201",
+      "Tòa nhà": "B2",
+      "Sức chứa": 45,
+      "Loại phòng": "Lý thuyết",
+      "Thiết bị": "Máy chiếu, bảng",
+      "Trạng thái": "Sẵn sàng"
+    },
+    {
+      "Mã phòng": "B2-202",
+      "Tòa nhà": "B2",
+      "Sức chứa": 45,
+      "Loại phòng": "Lý thuyết",
+      "Thiết bị": "Máy chiếu, bảng",
+      "Trạng thái": "Sẵn sàng"
+    },
+    {
+      "Mã phòng": "B3-101",
+      "Tòa nhà": "B3",
+      "Sức chứa": 100,
+      "Loại phòng": "Lý thuyết",
+      "Thiết bị": "Máy chiếu, âm thanh, micro",
+      "Trạng thái": "Sẵn sàng"
+    },
+    {
+      "Mã phòng": "C1-101",
+      "Tòa nhà": "C1",
+      "Sức chứa": 50,
+      "Loại phòng": "Lý thuyết",
+      "Thiết bị": "Máy chiếu, bảng",
+      "Trạng thái": "Sẵn sàng"
+    },
+    {
+      "Mã phòng": "C1-201",
+      "Tòa nhà": "C1",
+      "Sức chứa": 60,
+      "Loại phòng": "Lý thuyết",
+      "Thiết bị": "Máy chiếu, bảng",
+      "Trạng thái": "Bảo trì"
+    },
+    {
+      "Mã phòng": "A3-301",
+      "Tòa nhà": "A3",
+      "Sức chứa": 45,
+      "Loại phòng": "Thực hành",
+      "Thiết bị": "45 máy tính, máy chiếu",
+      "Trạng thái": "Sẵn sàng"
+    },
+    {
+      "Mã phòng": "A3-302",
+      "Tòa nhà": "A3",
+      "Sức chứa": 45,
+      "Loại phòng": "Thực hành",
+      "Thiết bị": "45 máy tính, máy chiếu",
+      "Trạng thái": "Sẵn sàng"
+    },
+    {
+      "Mã phòng": "A3-401",
+      "Tòa nhà": "A3",
+      "Sức chứa": 40,
+      "Loại phòng": "Thực hành",
+      "Thiết bị": "40 máy tính, máy chiếu",
+      "Trạng thái": "Sẵn sàng"
+    },
+    {
+      "Mã phòng": "A3-502",
+      "Tòa nhà": "A3",
+      "Sức chứa": 40,
+      "Loại phòng": "Thực hành",
+      "Thiết bị": "40 máy tính, bảng",
+      "Trạng thái": "Đang sử dụng"
+    },
+    {
+      "Mã phòng": "C2-101",
+      "Tòa nhà": "C2",
+      "Sức chứa": 30,
+      "Loại phòng": "Thực hành",
+      "Thiết bị": "Thiết bị thí nghiệm hóa học",
+      "Trạng thái": "Sẵn sàng"
+    },
+    {
+      "Mã phòng": "C2-102",
+      "Tòa nhà": "C2",
+      "Sức chứa": 30,
+      "Loại phòng": "Thực hành",
+      "Thiết bị": "Mô hình thực hành điều dưỡng",
+      "Trạng thái": "Bảo trì"
+    },
+    {
+      "Mã phòng": "D1-HT1",
+      "Tòa nhà": "D1",
+      "Sức chứa": 300,
+      "Loại phòng": "Hội trường",
+      "Thiết bị": "Sân khấu, âm thanh, máy chiếu",
+      "Trạng thái": "Sẵn sàng"
+    },
+    {
+      "Mã phòng": "D1-HT2",
+      "Tòa nhà": "D1",
+      "Sức chứa": 200,
+      "Loại phòng": "Hội trường",
+      "Thiết bị": "Sân khấu, âm thanh, máy chiếu",
+      "Trạng thái": "Sẵn sàng"
+    }
+  ],
+  "taiChinh": [
+    {
+      "Mã": "23010030",
+      "Họ và tên": "Đỗ Thị Nhung",
+      "Học kỳ": "HK II - 2025/2026",
+      "Phải thu": "4.480.000 đ",
+      "Đã nộp": "4.480.000 đ",
+      "Trạng thái": "Đủ điều kiện"
+    },
+    {
+      "Mã": "23010300",
+      "Họ và tên": "Hoàng Quốc Cường",
+      "Học kỳ": "HK II - 2025/2026",
+      "Phải thu": "5.760.000 đ",
+      "Đã nộp": "5.760.000 đ",
+      "Trạng thái": "Đủ điều kiện"
+    },
+    {
+      "Mã": "23010384",
+      "Họ và tên": "Hoàng Đức Nam",
+      "Học kỳ": "HK II - 2025/2026",
+      "Phải thu": "6.400.000 đ",
+      "Đã nộp": "3.200.000 đ",
+      "Trạng thái": "Còn công nợ"
+    },
+    {
+      "Mã": "23010529",
+      "Họ và tên": "Vũ Quang Cường",
+      "Học kỳ": "HK II - 2025/2026",
+      "Phải thu": "5.760.000 đ",
+      "Đã nộp": "3.860.000 đ",
+      "Trạng thái": "Còn công nợ"
+    },
+    {
+      "Mã": "23010607",
+      "Họ và tên": "Phạm Ngọc Hoa",
+      "Học kỳ": "HK II - 2025/2026",
+      "Phải thu": "5.120.000 đ",
+      "Đã nộp": "5.120.000 đ",
+      "Trạng thái": "Đủ điều kiện"
+    },
+    {
+      "Mã": "23010621",
+      "Họ và tên": "Đặng Bảo Mai",
+      "Học kỳ": "HK II - 2025/2026",
+      "Phải thu": "6.400.000 đ",
+      "Đã nộp": "6.400.000 đ",
+      "Trạng thái": "Đủ điều kiện"
+    },
+    {
+      "Mã": "23010791",
+      "Họ và tên": "Trịnh Ngọc Yến",
+      "Học kỳ": "HK II - 2025/2026",
+      "Phải thu": "5.760.000 đ",
+      "Đã nộp": "0 đ",
+      "Trạng thái": "Còn công nợ"
+    },
+    {
+      "Mã": "23010997",
+      "Họ và tên": "Lý Văn Hiếu",
+      "Học kỳ": "HK II - 2025/2026",
+      "Phải thu": "5.120.000 đ",
+      "Đã nộp": "5.120.000 đ",
+      "Trạng thái": "Đủ điều kiện"
+    },
+    {
+      "Mã": "23020071",
+      "Họ và tên": "Trần Hà Mai",
+      "Học kỳ": "HK II - 2025/2026",
+      "Phải thu": "5.760.000 đ",
+      "Đã nộp": "5.760.000 đ",
+      "Trạng thái": "Đủ điều kiện"
+    },
+    {
+      "Mã": "23020158",
+      "Họ và tên": "Phạm Ngọc Chi",
+      "Học kỳ": "HK II - 2025/2026",
+      "Phải thu": "5.760.000 đ",
+      "Đã nộp": "3.860.000 đ",
+      "Trạng thái": "Còn công nợ"
+    },
+    {
+      "Mã": "23020269",
+      "Họ và tên": "Dương Thu Lan",
+      "Học kỳ": "HK II - 2025/2026",
+      "Phải thu": "5.760.000 đ",
+      "Đã nộp": "5.760.000 đ",
+      "Trạng thái": "Đủ điều kiện"
+    },
+    {
+      "Mã": "23020320",
+      "Họ và tên": "Dương Đức Cường",
+      "Học kỳ": "HK II - 2025/2026",
+      "Phải thu": "5.120.000 đ",
+      "Đã nộp": "5.120.000 đ",
+      "Trạng thái": "Đủ điều kiện"
+    },
+    {
+      "Mã": "23020333",
+      "Họ và tên": "Đỗ Quốc Huy",
+      "Học kỳ": "HK II - 2025/2026",
+      "Phải thu": "5.760.000 đ",
+      "Đã nộp": "5.760.000 đ",
+      "Trạng thái": "Đủ điều kiện"
+    },
+    {
+      "Mã": "23020335",
+      "Họ và tên": "Đinh Minh Khoa",
+      "Học kỳ": "HK II - 2025/2026",
+      "Phải thu": "6.400.000 đ",
+      "Đã nộp": "6.400.000 đ",
+      "Trạng thái": "Đủ điều kiện"
+    },
+    {
+      "Mã": "23020368",
+      "Họ và tên": "Bùi Bảo Chi",
+      "Học kỳ": "HK II - 2025/2026",
+      "Phải thu": "5.760.000 đ",
+      "Đã nộp": "0 đ",
+      "Trạng thái": "Còn công nợ"
+    },
+    {
+      "Mã": "23020486",
+      "Họ và tên": "Trần Mai Nhung",
+      "Học kỳ": "HK II - 2025/2026",
+      "Phải thu": "6.400.000 đ",
+      "Đã nộp": "4.290.000 đ",
+      "Trạng thái": "Còn công nợ"
+    },
+    {
+      "Mã": "24100275",
+      "Họ và tên": "Trần Quốc Hải",
+      "Học kỳ": "HK II - 2025/2026",
+      "Phải thu": "4.860.000 đ",
+      "Đã nộp": "3.260.000 đ",
+      "Trạng thái": "Còn công nợ"
+    },
+    {
+      "Mã": "24100322",
+      "Họ và tên": "Phan Gia Dũng",
+      "Học kỳ": "HK II - 2025/2026",
+      "Phải thu": "4.860.000 đ",
+      "Đã nộp": "4.860.000 đ",
+      "Trạng thái": "Đủ điều kiện"
+    },
+    {
+      "Mã": "24100453",
+      "Họ và tên": "Dương Ngọc Linh",
+      "Học kỳ": "HK II - 2025/2026",
+      "Phải thu": "4.320.000 đ",
+      "Đã nộp": "4.320.000 đ",
+      "Trạng thái": "Đủ điều kiện"
+    },
+    {
+      "Mã": "24100642",
+      "Họ và tên": "Vũ Quang Nam",
+      "Học kỳ": "HK II - 2025/2026",
+      "Phải thu": "3.780.000 đ",
+      "Đã nộp": "0 đ",
+      "Trạng thái": "Còn công nợ"
+    },
+    {
+      "Mã": "24100852",
+      "Họ và tên": "Đặng Mai Dung",
+      "Học kỳ": "HK II - 2025/2026",
+      "Phải thu": "4.050.000 đ",
+      "Đã nộp": "3.040.000 đ",
+      "Trạng thái": "Còn công nợ"
+    },
+    {
+      "Mã": "24100862",
+      "Họ và tên": "Hoàng Ngọc Trang",
+      "Học kỳ": "HK II - 2025/2026",
+      "Phải thu": "3.780.000 đ",
+      "Đã nộp": "0 đ",
+      "Trạng thái": "Còn công nợ"
+    },
+    {
+      "Mã": "24100887",
+      "Họ và tên": "Vũ Bảo Linh",
+      "Học kỳ": "HK II - 2025/2026",
+      "Phải thu": "4.050.000 đ",
+      "Đã nộp": "4.050.000 đ",
+      "Trạng thái": "Đủ điều kiện"
+    },
+    {
+      "Mã": "24100929",
+      "Họ và tên": "Dương Hà Linh",
+      "Học kỳ": "HK II - 2025/2026",
+      "Phải thu": "4.050.000 đ",
+      "Đã nộp": "4.050.000 đ",
+      "Trạng thái": "Đủ điều kiện"
+    },
+    {
+      "Mã": "24110178",
+      "Họ và tên": "Đỗ Hữu Cường",
+      "Học kỳ": "HK II - 2025/2026",
+      "Phải thu": "5.400.000 đ",
+      "Đã nộp": "0 đ",
+      "Trạng thái": "Còn công nợ"
+    },
+    {
+      "Mã": "24110343",
+      "Họ và tên": "Ngô Phương Nhung",
+      "Học kỳ": "HK II - 2025/2026",
+      "Phải thu": "4.050.000 đ",
+      "Đã nộp": "4.050.000 đ",
+      "Trạng thái": "Đủ điều kiện"
+    },
+    {
+      "Mã": "24110361",
+      "Họ và tên": "Nguyễn Phương Yến",
+      "Học kỳ": "HK II - 2025/2026",
+      "Phải thu": "4.320.000 đ",
+      "Đã nộp": "3.240.000 đ",
+      "Trạng thái": "Còn công nợ"
+    },
+    {
+      "Mã": "24110411",
+      "Họ và tên": "Đỗ Quốc Sơn",
+      "Học kỳ": "HK II - 2025/2026",
+      "Phải thu": "4.050.000 đ",
+      "Đã nộp": "2.710.000 đ",
+      "Trạng thái": "Còn công nợ"
+    },
+    {
+      "Mã": "24110420",
+      "Họ và tên": "Dương Gia Đạt",
+      "Học kỳ": "HK II - 2025/2026",
+      "Phải thu": "4.320.000 đ",
+      "Đã nộp": "0 đ",
+      "Trạng thái": "Còn công nợ"
+    },
+    {
+      "Mã": "24110695",
+      "Họ và tên": "Đinh Mai Linh",
+      "Học kỳ": "HK II - 2025/2026",
+      "Phải thu": "4.860.000 đ",
+      "Đã nộp": "4.860.000 đ",
+      "Trạng thái": "Đủ điều kiện"
+    },
+    {
+      "Mã": "24110791",
+      "Họ và tên": "Hoàng Gia Sơn",
+      "Học kỳ": "HK II - 2025/2026",
+      "Phải thu": "5.400.000 đ",
+      "Đã nộp": "5.400.000 đ",
+      "Trạng thái": "Đủ điều kiện"
+    },
+    {
+      "Mã": "24110797",
+      "Họ và tên": "Đinh Hà Lan",
+      "Học kỳ": "HK II - 2025/2026",
+      "Phải thu": "5.400.000 đ",
+      "Đã nộp": "2.700.000 đ",
+      "Trạng thái": "Còn công nợ"
+    },
+    {
+      "Mã": "25010013",
+      "Họ và tên": "Phạm Minh Sơn",
+      "Học kỳ": "HK II - 2025/2026",
+      "Phải thu": "5.250.000 đ",
+      "Đã nộp": "5.250.000 đ",
+      "Trạng thái": "Đủ điều kiện"
+    },
+    {
+      "Mã": "25010215",
+      "Họ và tên": "Đỗ Khánh Thảo",
+      "Học kỳ": "HK II - 2025/2026",
+      "Phải thu": "7.000.000 đ",
+      "Đã nộp": "7.000.000 đ",
+      "Trạng thái": "Đủ điều kiện"
+    },
+    {
+      "Mã": "25010428",
+      "Họ và tên": "Dương Ngọc Chi",
+      "Học kỳ": "HK II - 2025/2026",
+      "Phải thu": "4.900.000 đ",
+      "Đã nộp": "4.900.000 đ",
+      "Trạng thái": "Đủ điều kiện"
+    },
+    {
+      "Mã": "25010646",
+      "Họ và tên": "Đỗ Đức Nam",
+      "Học kỳ": "HK II - 2025/2026",
+      "Phải thu": "5.600.000 đ",
+      "Đã nộp": "0 đ",
+      "Trạng thái": "Còn công nợ"
+    },
+    {
+      "Mã": "25010690",
+      "Họ và tên": "Hoàng Minh Phúc",
+      "Học kỳ": "HK II - 2025/2026",
+      "Phải thu": "5.250.000 đ",
+      "Đã nộp": "5.250.000 đ",
+      "Trạng thái": "Đủ điều kiện"
+    },
+    {
+      "Mã": "25010788",
+      "Họ và tên": "Trần Quang Huy",
+      "Học kỳ": "HK II - 2025/2026",
+      "Phải thu": "7.000.000 đ",
+      "Đã nộp": "3.500.000 đ",
+      "Trạng thái": "Còn công nợ"
+    },
+    {
+      "Mã": "25010873",
+      "Họ và tên": "Vũ Thị Mai",
+      "Học kỳ": "HK II - 2025/2026",
+      "Phải thu": "6.300.000 đ",
+      "Đã nộp": "6.300.000 đ",
+      "Trạng thái": "Đủ điều kiện"
+    },
+    {
+      "Mã": "25010996",
+      "Họ và tên": "Bùi Đức Phúc",
+      "Học kỳ": "HK II - 2025/2026",
+      "Phải thu": "4.900.000 đ",
+      "Đã nộp": "2.450.000 đ",
+      "Trạng thái": "Còn công nợ"
+    }
+  ],
+  "sinhVien": [
+    {
+      "Mã sinh viên": "23010030",
+      "Họ và tên": "Đỗ Thị Nhung",
+      "Email": "23010030@st.phenikaa-uni.edu.vn",
+      "Mã lớp": "2301",
+      "Ngành": "Công nghệ thông tin",
+      "Mã ngành": "480201",
+      "Khóa nhập học": "2023"
+    },
+    {
+      "Mã sinh viên": "23010300",
+      "Họ và tên": "Hoàng Quốc Cường",
+      "Email": "23010300@st.phenikaa-uni.edu.vn",
+      "Mã lớp": "2301",
+      "Ngành": "Công nghệ thông tin",
+      "Mã ngành": "480201",
+      "Khóa nhập học": "2023"
+    },
+    {
+      "Mã sinh viên": "23010384",
+      "Họ và tên": "Hoàng Đức Nam",
+      "Email": "23010384@st.phenikaa-uni.edu.vn",
+      "Mã lớp": "2301",
+      "Ngành": "Công nghệ thông tin",
+      "Mã ngành": "480201",
+      "Khóa nhập học": "2023"
+    },
+    {
+      "Mã sinh viên": "23010529",
+      "Họ và tên": "Vũ Quang Cường",
+      "Email": "23010529@st.phenikaa-uni.edu.vn",
+      "Mã lớp": "2301",
+      "Ngành": "Công nghệ thông tin",
+      "Mã ngành": "480201",
+      "Khóa nhập học": "2023"
+    },
+    {
+      "Mã sinh viên": "23010607",
+      "Họ và tên": "Phạm Ngọc Hoa",
+      "Email": "23010607@st.phenikaa-uni.edu.vn",
+      "Mã lớp": "2301",
+      "Ngành": "Công nghệ thông tin",
+      "Mã ngành": "480201",
+      "Khóa nhập học": "2023"
+    },
+    {
+      "Mã sinh viên": "23010621",
+      "Họ và tên": "Đặng Bảo Mai",
+      "Email": "23010621@st.phenikaa-uni.edu.vn",
+      "Mã lớp": "2301",
+      "Ngành": "Công nghệ thông tin",
+      "Mã ngành": "480201",
+      "Khóa nhập học": "2023"
+    },
+    {
+      "Mã sinh viên": "23010791",
+      "Họ và tên": "Trịnh Ngọc Yến",
+      "Email": "23010791@st.phenikaa-uni.edu.vn",
+      "Mã lớp": "2301",
+      "Ngành": "Công nghệ thông tin",
+      "Mã ngành": "480201",
+      "Khóa nhập học": "2023"
+    },
+    {
+      "Mã sinh viên": "23010997",
+      "Họ và tên": "Lý Văn Hiếu",
+      "Email": "23010997@st.phenikaa-uni.edu.vn",
+      "Mã lớp": "2301",
+      "Ngành": "Công nghệ thông tin",
+      "Mã ngành": "480201",
+      "Khóa nhập học": "2023"
+    },
+    {
+      "Mã sinh viên": "23020071",
+      "Họ và tên": "Trần Hà Mai",
+      "Email": "23020071@st.phenikaa-uni.edu.vn",
+      "Mã lớp": "2302",
+      "Ngành": "Kỹ thuật phần mềm",
+      "Mã ngành": "480103",
+      "Khóa nhập học": "2023"
+    },
+    {
+      "Mã sinh viên": "23020158",
+      "Họ và tên": "Phạm Ngọc Chi",
+      "Email": "23020158@st.phenikaa-uni.edu.vn",
+      "Mã lớp": "2302",
+      "Ngành": "Kỹ thuật phần mềm",
+      "Mã ngành": "480103",
+      "Khóa nhập học": "2023"
+    },
+    {
+      "Mã sinh viên": "23020269",
+      "Họ và tên": "Dương Thu Lan",
+      "Email": "23020269@st.phenikaa-uni.edu.vn",
+      "Mã lớp": "2302",
+      "Ngành": "Kỹ thuật phần mềm",
+      "Mã ngành": "480103",
+      "Khóa nhập học": "2023"
+    },
+    {
+      "Mã sinh viên": "23020320",
+      "Họ và tên": "Dương Đức Cường",
+      "Email": "23020320@st.phenikaa-uni.edu.vn",
+      "Mã lớp": "2302",
+      "Ngành": "Kỹ thuật phần mềm",
+      "Mã ngành": "480103",
+      "Khóa nhập học": "2023"
+    },
+    {
+      "Mã sinh viên": "23020333",
+      "Họ và tên": "Đỗ Quốc Huy",
+      "Email": "23020333@st.phenikaa-uni.edu.vn",
+      "Mã lớp": "2302",
+      "Ngành": "Kỹ thuật phần mềm",
+      "Mã ngành": "480103",
+      "Khóa nhập học": "2023"
+    },
+    {
+      "Mã sinh viên": "23020335",
+      "Họ và tên": "Đinh Minh Khoa",
+      "Email": "23020335@st.phenikaa-uni.edu.vn",
+      "Mã lớp": "2302",
+      "Ngành": "Kỹ thuật phần mềm",
+      "Mã ngành": "480103",
+      "Khóa nhập học": "2023"
+    },
+    {
+      "Mã sinh viên": "23020368",
+      "Họ và tên": "Bùi Bảo Chi",
+      "Email": "23020368@st.phenikaa-uni.edu.vn",
+      "Mã lớp": "2302",
+      "Ngành": "Kỹ thuật phần mềm",
+      "Mã ngành": "480103",
+      "Khóa nhập học": "2023"
+    },
+    {
+      "Mã sinh viên": "23020486",
+      "Họ và tên": "Trần Mai Nhung",
+      "Email": "23020486@st.phenikaa-uni.edu.vn",
+      "Mã lớp": "2302",
+      "Ngành": "Kỹ thuật phần mềm",
+      "Mã ngành": "480103",
+      "Khóa nhập học": "2023"
+    },
+    {
+      "Mã sinh viên": "24100275",
+      "Họ và tên": "Trần Quốc Hải",
+      "Email": "24100275@st.phenikaa-uni.edu.vn",
+      "Mã lớp": "2410",
+      "Ngành": "Quản trị kinh doanh",
+      "Mã ngành": "340101",
+      "Khóa nhập học": "2024"
+    },
+    {
+      "Mã sinh viên": "24100322",
+      "Họ và tên": "Phan Gia Dũng",
+      "Email": "24100322@st.phenikaa-uni.edu.vn",
+      "Mã lớp": "2410",
+      "Ngành": "Quản trị kinh doanh",
+      "Mã ngành": "340101",
+      "Khóa nhập học": "2024"
+    },
+    {
+      "Mã sinh viên": "24100453",
+      "Họ và tên": "Dương Ngọc Linh",
+      "Email": "24100453@st.phenikaa-uni.edu.vn",
+      "Mã lớp": "2410",
+      "Ngành": "Quản trị kinh doanh",
+      "Mã ngành": "340101",
+      "Khóa nhập học": "2024"
+    },
+    {
+      "Mã sinh viên": "24100642",
+      "Họ và tên": "Vũ Quang Nam",
+      "Email": "24100642@st.phenikaa-uni.edu.vn",
+      "Mã lớp": "2410",
+      "Ngành": "Quản trị kinh doanh",
+      "Mã ngành": "340101",
+      "Khóa nhập học": "2024"
+    },
+    {
+      "Mã sinh viên": "24100852",
+      "Họ và tên": "Đặng Mai Dung",
+      "Email": "24100852@st.phenikaa-uni.edu.vn",
+      "Mã lớp": "2410",
+      "Ngành": "Quản trị kinh doanh",
+      "Mã ngành": "340101",
+      "Khóa nhập học": "2024"
+    },
+    {
+      "Mã sinh viên": "24100862",
+      "Họ và tên": "Hoàng Ngọc Trang",
+      "Email": "24100862@st.phenikaa-uni.edu.vn",
+      "Mã lớp": "2410",
+      "Ngành": "Quản trị kinh doanh",
+      "Mã ngành": "340101",
+      "Khóa nhập học": "2024"
+    },
+    {
+      "Mã sinh viên": "24100887",
+      "Họ và tên": "Vũ Bảo Linh",
+      "Email": "24100887@st.phenikaa-uni.edu.vn",
+      "Mã lớp": "2410",
+      "Ngành": "Quản trị kinh doanh",
+      "Mã ngành": "340101",
+      "Khóa nhập học": "2024"
+    },
+    {
+      "Mã sinh viên": "24100929",
+      "Họ và tên": "Dương Hà Linh",
+      "Email": "24100929@st.phenikaa-uni.edu.vn",
+      "Mã lớp": "2410",
+      "Ngành": "Quản trị kinh doanh",
+      "Mã ngành": "340101",
+      "Khóa nhập học": "2024"
+    },
+    {
+      "Mã sinh viên": "24110178",
+      "Họ và tên": "Đỗ Hữu Cường",
+      "Email": "24110178@st.phenikaa-uni.edu.vn",
+      "Mã lớp": "2411",
+      "Ngành": "Tài chính - Ngân hàng",
+      "Mã ngành": "340201",
+      "Khóa nhập học": "2024"
+    },
+    {
+      "Mã sinh viên": "24110343",
+      "Họ và tên": "Ngô Phương Nhung",
+      "Email": "24110343@st.phenikaa-uni.edu.vn",
+      "Mã lớp": "2411",
+      "Ngành": "Tài chính - Ngân hàng",
+      "Mã ngành": "340201",
+      "Khóa nhập học": "2024"
+    },
+    {
+      "Mã sinh viên": "24110361",
+      "Họ và tên": "Nguyễn Phương Yến",
+      "Email": "24110361@st.phenikaa-uni.edu.vn",
+      "Mã lớp": "2411",
+      "Ngành": "Tài chính - Ngân hàng",
+      "Mã ngành": "340201",
+      "Khóa nhập học": "2024"
+    },
+    {
+      "Mã sinh viên": "24110411",
+      "Họ và tên": "Đỗ Quốc Sơn",
+      "Email": "24110411@st.phenikaa-uni.edu.vn",
+      "Mã lớp": "2411",
+      "Ngành": "Tài chính - Ngân hàng",
+      "Mã ngành": "340201",
+      "Khóa nhập học": "2024"
+    },
+    {
+      "Mã sinh viên": "24110420",
+      "Họ và tên": "Dương Gia Đạt",
+      "Email": "24110420@st.phenikaa-uni.edu.vn",
+      "Mã lớp": "2411",
+      "Ngành": "Tài chính - Ngân hàng",
+      "Mã ngành": "340201",
+      "Khóa nhập học": "2024"
+    },
+    {
+      "Mã sinh viên": "24110695",
+      "Họ và tên": "Đinh Mai Linh",
+      "Email": "24110695@st.phenikaa-uni.edu.vn",
+      "Mã lớp": "2411",
+      "Ngành": "Tài chính - Ngân hàng",
+      "Mã ngành": "340201",
+      "Khóa nhập học": "2024"
+    },
+    {
+      "Mã sinh viên": "24110791",
+      "Họ và tên": "Hoàng Gia Sơn",
+      "Email": "24110791@st.phenikaa-uni.edu.vn",
+      "Mã lớp": "2411",
+      "Ngành": "Tài chính - Ngân hàng",
+      "Mã ngành": "340201",
+      "Khóa nhập học": "2024"
+    },
+    {
+      "Mã sinh viên": "24110797",
+      "Họ và tên": "Đinh Hà Lan",
+      "Email": "24110797@st.phenikaa-uni.edu.vn",
+      "Mã lớp": "2411",
+      "Ngành": "Tài chính - Ngân hàng",
+      "Mã ngành": "340201",
+      "Khóa nhập học": "2024"
+    },
+    {
+      "Mã sinh viên": "25010013",
+      "Họ và tên": "Phạm Minh Sơn",
+      "Email": "25010013@st.phenikaa-uni.edu.vn",
+      "Mã lớp": "2501",
+      "Ngành": "Trí tuệ nhân tạo",
+      "Mã ngành": "480107",
+      "Khóa nhập học": "2025"
+    },
+    {
+      "Mã sinh viên": "25010215",
+      "Họ và tên": "Đỗ Khánh Thảo",
+      "Email": "25010215@st.phenikaa-uni.edu.vn",
+      "Mã lớp": "2501",
+      "Ngành": "Trí tuệ nhân tạo",
+      "Mã ngành": "480107",
+      "Khóa nhập học": "2025"
+    },
+    {
+      "Mã sinh viên": "25010428",
+      "Họ và tên": "Dương Ngọc Chi",
+      "Email": "25010428@st.phenikaa-uni.edu.vn",
+      "Mã lớp": "2501",
+      "Ngành": "Trí tuệ nhân tạo",
+      "Mã ngành": "480107",
+      "Khóa nhập học": "2025"
+    },
+    {
+      "Mã sinh viên": "25010646",
+      "Họ và tên": "Đỗ Đức Nam",
+      "Email": "25010646@st.phenikaa-uni.edu.vn",
+      "Mã lớp": "2501",
+      "Ngành": "Trí tuệ nhân tạo",
+      "Mã ngành": "480107",
+      "Khóa nhập học": "2025"
+    },
+    {
+      "Mã sinh viên": "25010690",
+      "Họ và tên": "Hoàng Minh Phúc",
+      "Email": "25010690@st.phenikaa-uni.edu.vn",
+      "Mã lớp": "2501",
+      "Ngành": "Trí tuệ nhân tạo",
+      "Mã ngành": "480107",
+      "Khóa nhập học": "2025"
+    },
+    {
+      "Mã sinh viên": "25010788",
+      "Họ và tên": "Trần Quang Huy",
+      "Email": "25010788@st.phenikaa-uni.edu.vn",
+      "Mã lớp": "2501",
+      "Ngành": "Trí tuệ nhân tạo",
+      "Mã ngành": "480107",
+      "Khóa nhập học": "2025"
+    },
+    {
+      "Mã sinh viên": "25010873",
+      "Họ và tên": "Vũ Thị Mai",
+      "Email": "25010873@st.phenikaa-uni.edu.vn",
+      "Mã lớp": "2501",
+      "Ngành": "Trí tuệ nhân tạo",
+      "Mã ngành": "480107",
+      "Khóa nhập học": "2025"
+    },
+    {
+      "Mã sinh viên": "25010996",
+      "Họ và tên": "Bùi Đức Phúc",
+      "Email": "25010996@st.phenikaa-uni.edu.vn",
+      "Mã lớp": "2501",
+      "Ngành": "Trí tuệ nhân tạo",
+      "Mã ngành": "480107",
+      "Khóa nhập học": "2025"
+    }
+  ]
+}

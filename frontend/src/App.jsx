@@ -13,7 +13,7 @@ const ROLE_HOME = {
   STUDENT: '/sinh-vien/dang-ky',
   ADMIN: '/admin',
   TRAINING: '/admin/dao-tao?module=ke-hoach',
-  DEPARTMENT: '/admin/dao-tao?module=hoc-phan',
+  DEPARTMENT: '/admin/dao-tao?module=chuong-trinh',
   FACILITIES: '/quan-ly-csvc',
   FINANCE: '/tai-chinh',
 }

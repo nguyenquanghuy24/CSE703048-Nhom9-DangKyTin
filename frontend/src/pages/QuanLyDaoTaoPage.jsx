@@ -2,6 +2,8 @@ import { useEffect, useMemo, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import AddMethodChooser from '../components/AddMethodChooser'
 import ExcelImportModal from '../components/ExcelImportModal'
+import { COURSES, PROGRAMS } from '../constants/academicCatalog'
+import curriculumMappingSeed from '../constants/curriculumMappings.json'
 import './QuanLyDaoTaoPage.css'
 
 const MODULES = {
@@ -21,20 +23,52 @@ const labels = { ma: 'Mã lớp / sinh viên', ten: 'Tên', chuongTrinh: 'Chươ
 const ROLE_NAMES = { ADMIN: 'Quản trị viên', TRAINING: 'Phòng Đào tạo', DEPARTMENT: 'Quản lý Khoa/Ngành', FACILITIES: 'Quản lý CSVC', FINANCE: 'Quản lý Tài chính' }
 const ROLE_AVATARS = { ADMIN: 'AD', TRAINING: 'ĐT', DEPARTMENT: 'KN', FACILITIES: 'CS', FINANCE: 'TC' }
 
+const DEFAULT_FACULTY_NAME = 'Khoa CNTT'
+const DEFAULT_PROGRAM_IDS = ['480201-2023', '480103-2023', '480107-2025']
+const CURRICULUM_NOTE = {
+  title: 'Danh sách gợi ý theo khoa',
+  message: 'Workbook chưa có ma trận CTĐT chính thức. Các môn dưới đây được gợi ý từ danh mục của cùng khoa, không khẳng định thuộc chương trình; loại môn, khối kiến thức và tiên quyết chưa được cung cấp. Cần khoa xác nhận trước khi dùng để đăng ký.',
+  emptyTitle: 'Chưa có học phần gợi ý cho CTĐT này',
+  emptyMessage: 'Không tìm thấy học phần cùng khoa trong danh mục nguồn. Danh sách chương trình và danh mục môn hiện có thể chưa đầy đủ.',
+}
+
+function CurriculumManager({ session, navigate }) {
+  const assignedIds = session?.programIds?.length ? session.programIds : DEFAULT_PROGRAM_IDS
+  const facultyName = session?.facultyName || DEFAULT_FACULTY_NAME
+  const assignedPrograms = PROGRAMS.filter((program) => assignedIds.includes(program.id))
+  const [params] = useSearchParams()
+  const mappings = curriculumMappingSeed
+  const requestedProgramId = params.get('program')
+  const selectedProgram = assignedPrograms.find((program) => program.id === requestedProgramId) || assignedPrograms[0]
+  const programMappings = mappings.filter((mapping) => mapping.programId === selectedProgram?.id)
+  const chooseProgram = (programId) => navigate(`/admin/dao-tao?module=chuong-trinh&program=${encodeURIComponent(programId)}`)
+
+  return <div className="portal-shell"><Sidebar module="chuong-trinh" navigate={navigate} /><main className="portal-main">
+    <header className="portal-header"><div><span className="breadcrumb">Cổng quản trị / Khoa / Ngành</span><h1>Chương trình đào tạo</h1><p>Xem phạm vi được giao và danh sách học phần trong từng chương trình.</p></div></header>
+    <section className="department-scope"><div><span>KHOA ĐƯỢC PHÂN CÔNG</span><strong>{facultyName}</strong><p>Ngành và khóa tuyển sinh được giao quản lý hiển thị bên dưới.</p></div><span>{assignedPrograms.length} chương trình</span></section>
+    <div className="curriculum-layout"><nav className="program-list" aria-label="Chương trình được phân công">{assignedPrograms.map((program) => <button key={program.id} className={`program-choice ${program.id === selectedProgram?.id ? 'active' : ''}`} onClick={() => chooseProgram(program.id)}><strong>{program.major}</strong><span>{program.id} · Khóa {program.cohort}</span><small>{mappings.filter((mapping) => mapping.programId === program.id).length} học phần trong CTĐT</small></button>)}</nav>
+    {selectedProgram ? <section className="curriculum-content"><div className="curriculum-heading"><div><span>{selectedProgram.id} · Khóa {selectedProgram.cohort}</span><h2>{selectedProgram.major}</h2><p>Khoa phụ trách: {selectedProgram.facultyName || facultyName}</p></div><strong>{programMappings.length} học phần</strong></div>
+      <div className="curriculum-source-note"><strong>{CURRICULUM_NOTE.title}</strong><p>{CURRICULUM_NOTE.message}</p></div>
+      
+      <div className="data-card"><div className="data-card-head"><strong>Học phần thuộc {selectedProgram.major}</strong><span>Chương trình {selectedProgram.id}</span></div><div className="table-scroll"><table><thead><tr><th>Mã học phần</th><th>Tên học phần</th><th>Khoa phụ trách</th><th>Tín chỉ</th><th>Khối kiến thức</th><th>Loại</th><th>Tiên quyết / song hành</th><th>Tr&#x1EA1;ng th&#xE1;i &#xE1;nh x&#x1EA1;</th><th /></tr></thead><tbody>{programMappings.map((mapping) => { const course = COURSES.find((item) => item.code === mapping.courseCode); if (!course) return null; return <tr key={mapping.courseCode}><td>{course.code}</td><td>{course.name}</td><td>{course.faculty}</td><td>{course.credits}</td><td>{mapping.knowledgeBlock}</td><td>{mapping.requirement}</td><td>{[mapping.prerequisites && `Tiên quyết: ${mapping.prerequisites}`, mapping.coRequisites && `Song hành: ${mapping.coRequisites}`].filter(Boolean).join(' · ') || 'Chưa khai báo'}</td><td>{mapping.mappingStatus}</td><td>—</td></tr>})}</tbody></table>{!programMappings.length && <div className="empty-state"><strong>{CURRICULUM_NOTE.emptyTitle}</strong><span>{CURRICULUM_NOTE.emptyMessage}</span></div>}</div></div>
+    </section> : <div className="empty-state"><strong>Tài khoản chưa được gán CTĐT</strong><span>Quản trị viên cần cập nhật danh sách mã CTĐT cho tài khoản này.</span></div>}</div>
+  </main></div>
+}
+
 function Sidebar({ module, navigate }) {
   const session = (() => { try { return JSON.parse(localStorage.getItem('portal-session') || 'null') } catch { return null } })()
-  const allLinks = [['sinh-vien', 'Sinh viên & kết quả học tập'], ['hoc-phan', 'Học phần / chương trình'], ['lop-hoc-phan', 'Lớp học phần'], ['ke-hoach', 'Kế hoạch đăng ký'], ['luot-dang-ky', 'Lượt đăng ký'], ['nhom-doi-tuong', 'Nhóm đối tượng']]
-  const roleModules = { TRAINING: ['sinh-vien', 'lop-hoc-phan', 'ke-hoach', 'luot-dang-ky', 'nhom-doi-tuong'], DEPARTMENT: ['hoc-phan', 'lop-hoc-phan'] }
+  const allLinks = [['chuong-trinh', 'Chương trình đào tạo'], ['sinh-vien', 'Sinh viên & kết quả học tập'], ['hoc-phan', 'Học phần / chương trình'], ['lop-hoc-phan', 'Lớp học phần'], ['ke-hoach', 'Kế hoạch đăng ký'], ['luot-dang-ky', 'Lượt đăng ký'], ['nhom-doi-tuong', 'Nhóm đối tượng']]
+  const roleModules = { TRAINING: ['sinh-vien', 'lop-hoc-phan', 'ke-hoach', 'luot-dang-ky', 'nhom-doi-tuong'], DEPARTMENT: ['chuong-trinh', 'hoc-phan', 'lop-hoc-phan'] }
   const links = allLinks.filter(([key]) => (roleModules[session?.role] || []).includes(key))
   const name = ROLE_NAMES[session?.role] || 'Người dùng'
   const account = session?.username ? (session.username.includes('@') ? session.username : `${session.username}@edu.vn`) : ''
   const avatar = ROLE_AVATARS[session?.role] || 'U'
   const logout = () => { localStorage.removeItem('portal-session'); navigate('/login', { replace: true }) }
-  return <aside className="portal-sidebar"><div className="portal-logo"><span className="portal-logo-mark">P</span><span><strong>P.K.A</strong><small>Academic portal</small></span></div><div className="sidebar-caption">{session?.role === 'TRAINING' ? 'Phòng Đào tạo' : session?.role === 'DEPARTMENT' ? 'Khoa / Ngành' : session?.role === 'FACILITIES' ? 'Cơ sở vật chất' : session?.role === 'FINANCE' ? 'Tài chính' : 'Quản trị'}</div>{links.map(([key, label]) => <button key={key} className={`sidebar-link ${module === key ? 'is-active' : ''}`} onClick={() => navigate(`/admin/dao-tao?module=${key}`)}>{label}</button>)}<div className="sidebar-spacer" />{session?.role === 'ADMIN' && <button className="sidebar-link" onClick={() => navigate('/admin')}>Quản lý tài khoản</button>}<div className="portal-sidebar-account"><span>{avatar}</span><div><strong>{name}</strong><small>{account}</small></div></div><button className="sidebar-link portal-logout" onClick={logout}>Đăng xuất <span>↗</span></button></aside>
+  return <aside className="portal-sidebar"><div className="portal-logo"><span className="portal-logo-mark">P</span><span><strong>P.K.A</strong><small>Academic portal</small></span></div><div className="sidebar-caption">{session?.role === 'TRAINING' ? 'Phòng Đào tạo' : session?.role === 'DEPARTMENT' ? 'Khoa / Ngành' : session?.role === 'FACILITIES' ? 'Cơ sở vật chất' : session?.role === 'FINANCE' ? 'Tài chính' : 'Quản trị'}</div>{links.map(([key, label]) => <button key={key} className={`sidebar-link ${module === key ? 'is-active' : ''}`} onClick={() => navigate(`/admin/dao-tao?module=${key}`)}>{label}</button>)}<div className="sidebar-spacer" />{session?.role === 'ADMIN' && <button className="sidebar-link" onClick={() => navigate('/admin')}>Quản lý tài khoản</button>}<div className="portal-sidebar-account"><span>{avatar}</span><div><strong>{name}</strong><small>{account}</small>{session?.role === 'DEPARTMENT' && <small>{session.facultyName || DEFAULT_FACULTY_NAME} · {session.programIds?.length || DEFAULT_PROGRAM_IDS.length} CTĐT</small>}</div></div><button className="sidebar-link portal-logout" onClick={logout}>Đăng xuất <span>↗</span></button></aside>
 }
 
 export default function QuanLyDaoTaoPage() {
-  const navigate = useNavigate(); const [params] = useSearchParams(); const session = (() => { try { return JSON.parse(localStorage.getItem('portal-session') || 'null') } catch { return null } })(); const allowedModules = { TRAINING: ['sinh-vien', 'lop-hoc-phan', 'ke-hoach', 'luot-dang-ky', 'nhom-doi-tuong'], DEPARTMENT: ['hoc-phan', 'lop-hoc-phan'] }; const defaultModule = session?.role === 'TRAINING' ? 'ke-hoach' : 'hoc-phan'; const requestedModule = params.get('module') || defaultModule; const module = (allowedModules[session?.role] || []).includes(requestedModule) ? requestedModule : defaultModule; const config = MODULES[module] || MODULES[defaultModule]
+  const navigate = useNavigate(); const [params] = useSearchParams(); const session = (() => { try { return JSON.parse(localStorage.getItem('portal-session') || 'null') } catch { return null } })(); const allowedModules = { TRAINING: ['sinh-vien', 'lop-hoc-phan', 'ke-hoach', 'luot-dang-ky', 'nhom-doi-tuong'], DEPARTMENT: ['chuong-trinh', 'hoc-phan', 'lop-hoc-phan'] }; const defaultModule = session?.role === 'TRAINING' ? 'ke-hoach' : 'chuong-trinh'; const requestedModule = params.get('module') || defaultModule; const module = (allowedModules[session?.role] || []).includes(requestedModule) ? requestedModule : defaultModule; const config = MODULES[module] || MODULES[session?.role === 'TRAINING' ? 'ke-hoach' : 'hoc-phan']
   const [rows, setRows] = useState(config.seed); const [query, setQuery] = useState(''); const [editing, setEditing] = useState(null); const [toast, setToast] = useState(''); const [entryChoice, setEntryChoice] = useState(false); const [importOpen, setImportOpen] = useState(false); const [detailStudent, setDetailStudent] = useState(null)
   const [academicResults, setAcademicResults] = useState([{ maSinhVien: 'SV001', maLop: 'CSE702025.1', hocPhan: 'Kỹ thuật phần mềm', dotDangKy: 'HK I · 2025-2026', diem: '8.5', ketQua: 'Đã đạt' }, { maSinhVien: 'SV001', maLop: 'CSE703006.1', hocPhan: 'Cấu trúc dữ liệu và thuật toán', dotDangKy: 'HK I · 2025-2026', diem: '7.0', ketQua: 'Đã đạt' }])
   useEffect(() => { let cancelled = false; setRows(config.seed); fetch(`http://localhost:8080/api/portal/${module}`).then((response) => response.ok ? response.json() : Promise.reject(new Error('API unavailable'))).then((data) => { if (!cancelled && data.length) setRows(data) }).catch(() => {}); return () => { cancelled = true } }, [module])
@@ -43,6 +77,7 @@ export default function QuanLyDaoTaoPage() {
   const remove = async (index) => { if (window.confirm('Bạn có chắc chắn muốn xóa bản ghi này?')) { try { await fetch(`http://localhost:8080/api/portal/${module}/${index}`, { method: 'DELETE' }) } catch { /* fallback local */ } setRows((old) => old.filter((_, i) => i !== index)) } }
   const canImport = (module === 'sinh-vien' && session?.role === 'TRAINING') || (module === 'hoc-phan' && session?.role === 'DEPARTMENT') || (module === 'lop-hoc-phan' && session?.role === 'DEPARTMENT')
   const canCreate = (['ke-hoach', 'luot-dang-ky', 'nhom-doi-tuong'].includes(module) && session?.role === 'TRAINING') || (['hoc-phan', 'lop-hoc-phan'].includes(module) && session?.role === 'DEPARTMENT')
+  if (module === 'chuong-trinh' && session?.role === 'DEPARTMENT') return <CurriculumManager session={session} navigate={navigate} />
   const importFields = module === 'sinh-vien'
     ? [{ key: 'maSinhVien', label: 'Mã sinh viên', required: true, example: 'SV001' }, { key: 'maLop', label: 'Mã lớp học phần', required: true, example: 'CSE702025.1' }, { key: 'hocPhan', label: 'Tên học phần', required: true, example: 'Kỹ thuật phần mềm' }, { key: 'dotDangKy', label: 'Học kỳ / đợt', required: true, example: 'HK I · 2025-2026' }, { key: 'diem', label: 'Điểm số', required: true, example: '8.5', parse: (value) => /^([0-9]|10)([.,][0-9]+)?$/.test(value) ? value.replace(',', '.') : '' }, { key: 'ketQua', label: 'Trạng thái kết quả', required: true, example: 'Đã đạt' }]
     : (module === 'lop-hoc-phan' ? config.fields.filter((field) => !['phong', 'trangThai'].includes(field)) : config.fields).map((field) => ({ key: field, label: labels[field] || field, required: field !== 'trangThai' && field !== 'ketQua' }))

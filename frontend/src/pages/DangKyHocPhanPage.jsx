@@ -1,46 +1,103 @@
 import { useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import StudentLayout, { Modal, Notice } from '../components/StudentLayout'
+import { COURSES, DEFAULT_SEMESTER_ID, DEMO_STUDENT, PROGRAMS, SEMESTERS } from '../constants/academicCatalog'
 
-const SUBJECTS = [
-  { code: 'CSE703006', name: 'Cấu trúc dữ liệu và thuật toán', credits: 3, prerequisite: 'Không', classes: [{ code: 'CSE703006.1', lecturer: 'ThS. Nguyễn Văn Anh', day: 2, periods: '1-3', room: 'B201', current: 38, max: 45 }, { code: 'CSE703006.2', lecturer: 'TS. Trần Minh Hoàng', day: 4, periods: '6-8', room: 'B202', current: 45, max: 45 }] },
-  { code: 'CSE702025', name: 'Kỹ thuật phần mềm', credits: 3, prerequisite: 'Cấu trúc dữ liệu và thuật toán', classes: [{ code: 'CSE702025.1', lecturer: 'PGS.TS. Lê Thị Hoa', day: 4, periods: '6-8', room: 'A103', current: 30, max: 45 }] },
-  { code: 'CSE702017', name: 'Hệ điều hành', credits: 3, prerequisite: 'Kiến trúc máy tính', classes: [{ code: 'CSE702017.1', lecturer: 'TS. Phạm Đức Nam', day: 6, periods: '3-5', room: 'C301', current: 22, max: 45 }] },
-  { code: 'CSE703023', name: 'Kiến trúc máy tính', credits: 3, prerequisite: 'Không', classes: [] },
-  { code: 'CSE701010', name: 'Lập trình hướng đối tượng', credits: 3, prerequisite: 'Không', classes: [{ code: 'CSE701010.1', lecturer: 'ThS. Hoàng Thị Lan', day: 3, periods: '1-3', room: 'A201', current: 40, max: 45 }] },
-]
-const dayName = { 2: 'Thứ 2', 3: 'Thứ 3', 4: 'Thứ 4', 5: 'Thứ 5', 6: 'Thứ 6', 7: 'Thứ 7' }
+const DAYS = { 2: 'Thứ 2', 3: 'Thứ 3', 4: 'Thứ 4', 5: 'Thứ 5', 6: 'Thứ 6', 7: 'Thứ 7' }
 const readRegistered = () => { try { return JSON.parse(localStorage.getItem('student-registered') || '[]') } catch { return [] } }
 
-export default function DangKyHocPhanPage() {
-  const [params, setParams] = useSearchParams(); const initialTab = params.get('tab') === 'registered' ? 'registered' : 'available'
-  const [tab, setTab] = useState(initialTab); const [search, setSearch] = useState(''); const [days, setDays] = useState([]); const [expanded, setExpanded] = useState(null); const [registered, setRegistered] = useState(readRegistered); const [confirm, setConfirm] = useState(null); const [notice, setNotice] = useState(null)
-  const totalCredits = registered.reduce((total, item) => total + item.credits, 0)
-  const filtered = useMemo(() => SUBJECTS.filter((subject) => { const text = `${subject.code} ${subject.name}`.toLowerCase(); const matchesText = text.includes(search.toLowerCase()); const matchesDay = !days.length || subject.classes.some((item) => days.includes(item.day)); return matchesText && matchesDay }), [search, days])
-  const chooseTab = (next) => { setTab(next); setParams(next === 'registered' ? { tab: 'registered' } : {}) }
-  const flash = (type, message) => { setNotice({ type, message }); window.setTimeout(() => setNotice(null), 3000) }
-  const register = (subject, item) => {
-    if (item.current >= item.max) return flash('error', 'Lớp học phần đã đủ sĩ số, vui lòng chọn lớp khác.')
-    if (registered.some((entry) => entry.code === item.code)) return flash('error', 'Bạn đã đăng ký lớp học phần này trong học kỳ.')
-    if (totalCredits + subject.credits > 24) return flash('error', 'Tổng số tín chỉ đăng ký vượt quá giới hạn cho phép.')
-    const conflict = registered.find((entry) => entry.day === item.day && entry.periods === item.periods)
-    if (conflict) return flash('error', `Lớp học phần trùng lịch với ${conflict.code}.`)
-    setConfirm({ type: 'register', subject, item })
-  }
-  const cancel = (item) => setConfirm({ type: 'cancel', item })
-  const confirmAction = () => {
-    if (confirm.type === 'register') { const next = [...registered, { ...confirm.item, name: confirm.subject.name, credits: confirm.subject.credits, subjectCode: confirm.subject.code, registeredAt: new Date().toISOString() }]; setRegistered(next); localStorage.setItem('student-registered', JSON.stringify(next)); flash('success', 'Đăng ký lớp học phần thành công.'); setExpanded(null) }
-    else { const next = registered.filter((item) => item.code !== confirm.item.code); setRegistered(next); localStorage.setItem('student-registered', JSON.stringify(next)); flash('success', 'Hủy đăng ký lớp học phần thành công.') }
-    setConfirm(null)
-  }
-  return <StudentLayout active={tab === 'registered' ? 'da-dang-ky' : 'dang-ky'} breadcrumb="Đăng ký học phần">
-    <div className="student-page-heading"><div><span className="eyebrow">Học kỳ I · Năm học 2026–2027</span><h1>Đăng ký học phần</h1><p>Chọn lớp học phần phù hợp với kế hoạch học tập của bạn.</p></div><div className="round-card"><span>Đợt đăng ký sắp mở</span><strong>Đăng ký học kỳ I</strong><small>20/11/2026 — 15/12/2026</small></div></div>
-    {notice && <Notice type={notice.type}>{notice.message}</Notice>}
-    <div className="student-stats"><div><span>Số tín chỉ đã đăng ký</span><strong>{totalCredits} / 24</strong></div><div><span>Lớp học phần</span><strong>{registered.length}</strong></div><div><span>Trạng thái học vụ</span><strong>Bình thường</strong></div></div>
-    <div className="student-tabs"><button className={tab === 'available' ? 'active' : ''} onClick={() => chooseTab('available')}>Danh sách học phần</button><button className={tab === 'registered' ? 'active' : ''} onClick={() => chooseTab('registered')}>Học phần đã đăng ký <b>{registered.length}</b></button></div>
-    {tab === 'available' ? <><section className="filter-panel"><label><span>Từ khóa</span><input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Mã lớp hoặc tên học phần" /></label><div className="day-filter"><span>Ngày học</span><div>{Object.entries(dayName).map(([day, label]) => <button key={day} className={days.includes(Number(day)) ? 'selected' : ''} onClick={() => setDays((old) => old.includes(Number(day)) ? old.filter((value) => value !== Number(day)) : [...old, Number(day)])}>{label}</button>)}</div></div><button className="text-button" onClick={() => { setSearch(''); setDays([]) }}>Xóa bộ lọc</button></section><section className="subject-list"><div className="section-title"><strong>{filtered.length} học phần đang mở</strong><span>Chọn học phần để xem các lớp</span></div>{filtered.map((subject) => <article className={`subject-item ${expanded === subject.code ? 'expanded' : ''}`} key={subject.code}><button className="subject-summary" onClick={() => setExpanded(expanded === subject.code ? null : subject.code)}><span className="expand-icon">{expanded === subject.code ? '−' : '+'}</span><span className="subject-code">{subject.code}</span><span className="subject-name">{subject.name}</span><span className="credit-badge">{subject.credits} TC</span><span className="subject-count">{subject.classes.length} lớp</span></button>{expanded === subject.code && <div className="class-options">{subject.classes.length ? subject.classes.map((item) => <div className="class-option" key={item.code}><div><strong>{item.code}</strong><span>{item.lecturer}</span></div><div><span>{dayName[item.day]} · Tiết {item.periods}</span><span>Phòng {item.room}</span></div><div><span>{item.current}/{item.max} chỗ</span><button className="outline-button" disabled={item.current >= item.max} onClick={() => register(subject, item)}>{item.current >= item.max ? 'Đã đầy' : registered.some((entry) => entry.code === item.code) ? 'Đã đăng ký' : 'Đăng ký'}</button></div></div>) : <div className="empty-row">Học phần này chưa có lớp mở.</div>}</div>}</article>)}</section></> : <RegisteredList registered={registered} onCancel={cancel} />}
-    {confirm && <Modal title={confirm.type === 'register' ? 'Xác nhận đăng ký' : 'Xác nhận hủy đăng ký'} onClose={() => setConfirm(null)}><p className="modal-message">{confirm.type === 'register' ? `Bạn có chắc chắn muốn đăng ký lớp ${confirm.item.code} — ${confirm.subject.name}?` : `Bạn có chắc chắn muốn hủy đăng ký lớp ${confirm.item.code} — ${confirm.item.name}?`}</p><div className="modal-actions"><button className="button button-light" onClick={() => setConfirm(null)}>Không</button><button className="button button-dark" onClick={confirmAction}>Xác nhận</button></div></Modal>}
-  </StudentLayout>
+function getEligibility(course, section, program, semester, registered, credits) {
+  if (!course.programMappingAvailable) return 'Workbook chưa có ma trận học phần thuộc từng CTĐT để xác nhận quyền đăng ký.'
+  if (!program || !course.programIds.includes(program.id)) return 'Học phần không thuộc chương trình đào tạo của sinh viên.'
+  if (!course.semesterIds.includes(semester.id) || section.semesterId !== semester.id) return 'Lớp trong workbook chưa được gắn với học kỳ đã chọn.'
+  if (semester.status !== 'Đang mở') return 'Đợt đăng ký của học kỳ này chưa mở hoặc đã đóng.'
+  if (DEMO_STUDENT.academicStatus !== 'Bình thường') return 'Chưa có dữ liệu học vụ để xác nhận điều kiện đăng ký.'
+  const debtStatus = DEMO_STUDENT.debtBySemester[semester.sourceLabel]
+  if (program.requiresNoDebt && !debtStatus) return 'Chưa có dữ liệu công nợ cho học kỳ đã chọn.'
+  if (program.requiresNoDebt && debtStatus !== 'Đủ điều kiện') return 'Sinh viên còn công nợ học phí.'
+  if (registered.some((entry) => entry.semesterId === semester.id && (entry.subjectCode === course.code || entry.code === section.code))) return 'Đã đăng ký học phần này trong học kỳ.'
+  if (!course.prerequisiteDataAvailable || !DEMO_STUDENT.transcriptAvailable) return 'Chưa có dữ liệu tiên quyết/kết quả học tập để xác nhận điều kiện.'
+  const missingPrerequisite = course.prerequisites.find((code) => !DEMO_STUDENT.passedCourses.includes(code))
+  if (missingPrerequisite) return `Chưa hoàn thành học phần tiên quyết ${missingPrerequisite}.`
+  if (program.maxCredits && credits + course.credits > program.maxCredits) return `Vượt giới hạn ${program.maxCredits} tín chỉ của chương trình.`
+  const [start, end] = section.periods.split('-').map(Number)
+  const conflict = registered.find((entry) => {
+    if (entry.semesterId !== semester.id || Number(entry.day) !== Number(section.day)) return false
+    const [entryStart, entryEnd] = String(entry.periods).split('-').map(Number)
+    return start <= entryEnd && entryStart <= end
+  })
+  if (conflict) return `Trùng lịch với lớp ${conflict.code}.`
+  const enrolledCount = registered.filter((entry) => entry.semesterId === semester.id && entry.code === section.code).length
+  if (section.current + enrolledCount >= section.max) return 'Lớp đã đủ sĩ số.'
+  return ''
 }
 
-function RegisteredList({ registered, onCancel }) { return <section className="registered-panel"><div className="section-title"><strong>{registered.length} lớp học phần đã đăng ký</strong><span>Dữ liệu được cập nhật sau mỗi thao tác</span></div>{registered.length ? <div className="registered-table-wrap"><table className="student-table"><thead><tr><th>Mã lớp</th><th>Học phần</th><th>Tín chỉ</th><th>Lịch học</th><th>Phòng</th><th /></tr></thead><tbody>{registered.map((item) => <tr key={item.code}><td><strong>{item.code}</strong></td><td>{item.name}</td><td>{item.credits}</td><td>{dayName[item.day]} · Tiết {item.periods}</td><td>{item.room}</td><td><button className="text-button danger" onClick={() => onCancel(item)}>Hủy đăng ký</button></td></tr>)}</tbody></table></div> : <div className="empty-state"><strong>Chưa có học phần đăng ký</strong><span>Hãy chuyển sang danh sách học phần để bắt đầu.</span></div>}</section> }
+export default function DangKyHocPhanPage() {
+  const [params, setParams] = useSearchParams()
+  const [tab, setTab] = useState(params.get('tab') === 'registered' ? 'registered' : 'available')
+  const semesterId = DEFAULT_SEMESTER_ID
+  const programId = DEMO_STUDENT.programId
+  const [query, setQuery] = useState('')
+  const [day, setDay] = useState('all')
+  const [expanded, setExpanded] = useState(null)
+  const [allRegistered, setAllRegistered] = useState(readRegistered)
+  const [confirm, setConfirm] = useState(null)
+  const [notice, setNotice] = useState(null)
+
+  const semester = SEMESTERS.find((item) => item.id === semesterId) || SEMESTERS[0]
+  const studentProgram = PROGRAMS.find((item) => item.id === DEMO_STUDENT.programId)
+  const registered = allRegistered.filter((entry) => (entry.semesterId || DEFAULT_SEMESTER_ID) === semesterId)
+  const credits = registered.reduce((sum, entry) => sum + Number(entry.credits || 0), 0)
+  const filteredCourses = useMemo(() => COURSES.filter((course) => {
+    const programMatches = course.programIds.includes(programId)
+    const sections = course.classes.filter((item) => item.status === 'Đã duyệt')
+    const haystack = `${course.code} ${course.name} ${course.block} ${sections.map((item) => `${item.code} ${item.lecturer} ${item.room} ${DAYS[item.day]} ${item.periods}`).join(' ')}`.toLocaleLowerCase('vi')
+    return programMatches && (!day || day === 'all' || sections.some((item) => String(item.day) === day)) && haystack.includes(query.trim().toLocaleLowerCase('vi'))
+  }), [programId, day, query])
+
+  const flash = (type, message) => { setNotice({ type, message }); window.setTimeout(() => setNotice(null), 3500) }
+  const chooseTab = (next) => { setTab(next); setParams(next === 'registered' ? { tab: 'registered' } : {}) }
+  const requestRegister = (course, section) => {
+    const reason = getEligibility(course, section, studentProgram, semester, registered, credits)
+    if (reason) return flash('error', reason)
+    setConfirm({ type: 'register', course, section })
+  }
+  const requestCancel = (entry) => {
+    if (semester.status !== 'Đang mở') return flash('error', 'Đợt đăng ký đã đóng; không thể hủy lớp trong học kỳ này.')
+    setConfirm({ type: 'cancel', entry })
+  }
+  const confirmAction = () => {
+    let next
+    if (confirm.type === 'register') {
+      const { course, section } = confirm
+      next = [...allRegistered, { ...section, name: course.name, credits: course.credits, subjectCode: course.code, facultyId: studentProgram.facultyId, majorId: studentProgram.majorId, programId: studentProgram.id, semesterId, registeredAt: new Date().toISOString() }]
+      flash('success', `Đã đăng ký ${course.code} trong ${semester.label}.`)
+    } else {
+      next = allRegistered.filter((entry) => !(entry.code === confirm.entry.code && (entry.semesterId || SEMESTERS[0].id) === semesterId))
+      flash('success', `Đã hủy lớp ${confirm.entry.code} trong ${semester.label}.`)
+    }
+    setAllRegistered(next)
+    localStorage.setItem('student-registered', JSON.stringify(next))
+    setConfirm(null)
+  }
+
+  return <StudentLayout active={tab === 'registered' ? 'da-dang-ky' : 'dang-ky'} breadcrumb="Đăng ký học phần">
+    <div className="student-page-heading"><div><span className="eyebrow">Cổng đăng ký · {semester.label}</span><h1>Đăng ký học phần</h1><p>Tra cứu lớp theo khoa, ngành và chương trình đào tạo.</p></div><div className="round-card"><span>Đợt đăng ký</span><strong>{semester.status}</strong><small>{new Date(semester.startsAt).toLocaleDateString('vi-VN')} — {new Date(semester.endsAt).toLocaleDateString('vi-VN')}</small></div></div>
+    {notice && <Notice type={notice.type}>{notice.message}</Notice>}
+    <section className="student-stats"><div><span>Sinh viên</span><strong>{DEMO_STUDENT.id} · {DEMO_STUDENT.name}</strong></div><div><span>Chương trình đang theo học</span><strong>{studentProgram?.major} · Khóa {studentProgram?.cohort}</strong></div><div><span>Tín chỉ kỳ này / giới hạn CTĐT</span><strong>{credits} / {studentProgram?.maxCredits ?? 'Chưa có dữ liệu'}</strong></div></section>
+    <div className="student-tabs"><button className={tab === 'available' ? 'active' : ''} onClick={() => chooseTab('available')}>Học phần và lớp được duyệt <b>{filteredCourses.length}</b></button><button className={tab === 'registered' ? 'active' : ''} onClick={() => chooseTab('registered')}>Đã đăng ký <b>{registered.length}</b></button></div>
+    {tab === 'available' ? <>
+      <section className="filter-panel"><label><span>Tìm học phần, mã lớp, giảng viên hoặc phòng</span><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Ví dụ: CSE201003, Nguyễn Minh An, A1-203" /></label><label><span>Ngày học</span><select value={day} onChange={(event) => setDay(event.target.value)}><option value="all">Tất cả các ngày</option>{Object.entries(DAYS).map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></label><button className="text-button" onClick={() => { setQuery(''); setDay('all') }}>Xóa bộ lọc</button></section>
+      <section className="subject-list"><div className="section-title"><strong>{filteredCourses.length} học phần phù hợp</strong><span>{semester.label} · {COURSES.length} học phần từ workbook</span></div>{filteredCourses.map((course) => {
+        const courseProgram = PROGRAMS.find((item) => item.id === programId) || studentProgram
+        const sections = course.classes.filter((item) => item.status === 'Đã duyệt')
+        return <article className={`subject-item ${expanded === course.code ? 'expanded' : ''}`} key={course.code}><button className="subject-summary" onClick={() => setExpanded(expanded === course.code ? null : course.code)}><span className="expand-icon">{expanded === course.code ? '−' : '+'}</span><span className="subject-code">{course.code}</span><span className="subject-name">{course.name}</span><span className="credit-badge">{course.credits} TC</span><span className="subject-count">{sections.length} lớp · {course.block}</span></button>{expanded === course.code && <div className="class-options">{sections.length ? sections.map((section) => {
+          const reason = getEligibility(course, section, studentProgram, semester, registered, credits)
+          const isAlreadyRegistered = registered.some((entry) => entry.subjectCode === course.code || entry.code === section.code)
+          return <div className="class-option" key={section.code}><div><strong>{section.code}</strong><span>{section.lecturer}</span></div><div><span>{DAYS[section.day]} · Tiết {section.periods}</span><span>Phòng {section.room}</span><span>{section.current}/{section.max} chỗ</span></div><div><span>{isAlreadyRegistered ? 'Đã đăng ký học phần' : reason || 'Đủ điều kiện đăng ký'}</span><button className="outline-button" disabled={Boolean(reason)} onClick={() => requestRegister(course, section)}>{isAlreadyRegistered ? 'Đã đăng ký' : reason ? 'Không đủ điều kiện' : 'Đăng ký'}</button></div></div>
+        }) : <div className="empty-row">Chưa có lớp liên kết với học phần này.</div>}<div className="empty-row">Khoa phụ trách: {course.faculty} · Ngành đang lọc: {courseProgram?.major || 'Tất cả'} · Tiên quyết: chưa có dữ liệu nguồn</div></div>}</article>
+      })}{!filteredCourses.length && <div className="empty-state"><strong>Không tìm thấy học phần</strong><span>Thử đổi khoa, ngành, học kỳ hoặc điều kiện tìm kiếm.</span></div>}</section>
+    </> : <section className="registered-panel"><div className="section-title"><strong>{registered.length} lớp đã đăng ký</strong><span>{semester.label} · {credits} tín chỉ</span></div>{registered.length ? <div className="registered-table-wrap"><table className="student-table"><thead><tr><th>Mã lớp</th><th>Mã học phần</th><th>Học phần</th><th>Tín chỉ</th><th>Lịch học</th><th>Phòng</th><th /></tr></thead><tbody>{registered.map((entry) => <tr key={`${entry.code}-${entry.semesterId}`}><td><strong>{entry.code}</strong></td><td>{entry.subjectCode}</td><td>{entry.name}</td><td>{entry.credits}</td><td>{DAYS[entry.day]} · Tiết {entry.periods}</td><td>{entry.room}</td><td><button className="text-button danger" onClick={() => requestCancel(entry)}>Hủy đăng ký</button></td></tr>)}</tbody></table></div> : <div className="empty-state"><strong>Chưa có lớp đăng ký trong kỳ này</strong><span>Chọn “Danh mục lớp mở” để xem học phần phù hợp với CTĐT của bạn.</span></div>}</section>}
+    {confirm && <Modal title={confirm.type === 'register' ? 'Xác nhận đăng ký' : 'Xác nhận hủy'} onClose={() => setConfirm(null)}><p className="modal-message">{confirm.type === 'register' ? `Đăng ký lớp ${confirm.section.code} – ${confirm.course.name} (${confirm.course.credits} TC) trong ${semester.label}?` : `Hủy lớp ${confirm.entry.code} – ${confirm.entry.name} trong ${semester.label}?`}</p><div className="modal-actions"><button className="button button-light" onClick={() => setConfirm(null)}>Quay lại</button><button className="button button-dark" onClick={confirmAction}>Xác nhận</button></div></Modal>}
+  </StudentLayout>
+}
