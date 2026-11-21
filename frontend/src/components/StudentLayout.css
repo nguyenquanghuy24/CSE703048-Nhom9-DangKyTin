@@ -10,3 +10,7 @@
 .schedule-block.span-2{height:130px}.schedule-block.span-3{height:200px}
 
 @media(max-width:800px){.student-sidebar-bottom{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:8px;padding:8px 0 0;border-top:1px solid #ccc}.student-account-mini{margin:0}.logout-link{width:auto}}
+
+/* Keep account actions available while page content scrolls. */
+.student-sidebar{position:fixed;inset:0 auto 0 0;height:100vh;overflow-y:auto;z-index:20}.student-main{margin-left:220px;min-width:0}
+@media(max-width:800px){.student-sidebar{position:sticky;inset:auto;height:auto;overflow:visible;z-index:20}.student-main{margin-left:0}}
